@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Portofolio Game Developer</title>
+<title>Billy | Portofolio Game Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light;--bg:#f8f4ea;--sea:#cdeaf5;--panel:#fffdf8;--text:#0b3b57;--muted:#4f7488;--accent:#0a7fb0;--ink:#fff;--line:#e4d9c2;--screen:#0a2f45;
+:root{color-scheme:light;--bg:#f8f4ea;--sea:#cdeaf5;--panel:#fffdf8;--text:#0b3b57;--muted:#4f7488;--accent:#0a7fb0;--ink:#fff;--line:#e4d9c2;--screen:#051a27;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
 *,*::before,*::after{box-sizing:border-box}
@@ -35,15 +35,19 @@ header a{font:800 20px "Bricolage Grotesque",system-ui,sans-serif;text-decoratio
 .top p{max-width:64ch;color:var(--muted);margin:12px 0 0;font-size:16px}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
 .chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:3px 12px;font-size:12.5px;font-weight:500}
-.stage{background:var(--panel);border:2px solid var(--line);border-radius:22px;padding:10px;margin-top:24px}
-.screen{aspect-ratio:16/9;border-radius:14px;overflow:hidden;position:relative;display:grid;place-items:center;color:#f4fbff;background:linear-gradient(135deg,var(--g1),var(--g2))}
-.screen iframe,.screen video,.screen .gif-view{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:cover}
+
+/* STAGE PREVIEW LEBIH COMPACT AGAR GIF TAJAM */
+.stage{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:10px;margin:24px auto 0;max-width:780px}
+.screen{aspect-ratio:16/9;border-radius:14px;overflow:hidden;position:relative;display:grid;place-items:center;color:#f4fbff;background:#051a27}
+.screen iframe,.screen video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:cover}
+.screen .gif-view{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#051a27;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
+
 .empty{text-align:center;padding:20px;max-width:460px;background:color-mix(in srgb,var(--screen) 80%,transparent);border-radius:16px}
 .empty h3{font-size:22px;margin-bottom:6px}
 .empty p{margin:0 0 12px;font-size:14px;color:#cfe6f1}
 .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px}
 .row input[type=text]{flex:1 1 200px;min-width:0;padding:10px 12px;border-radius:8px;border:1px solid #3f7a99;background:#0a2f45;color:#f4fbff;font-size:14px}
-.btn{background:var(--accent);color:var(--ink);border:0;border-radius:10px;padding:10px 18px;font-weight:700;text-decoration:none;display:inline-block;text-align:center;min-height:44px;line-height:24px}
+.btn{background:var(--accent);color:var(--ink);border:0;border-radius:10px;padding:10px 18px;font-weight:700;text-decoration:none;display:inline-block;text-align:center;min-height:44px;line-height:24px;transition:background .2s,border-color .2s,color .2s}
 .btn.alt{background:transparent;border:1px solid currentColor;font-weight:600;color:inherit}
 .sec{padding:44px 0 0}
 .sec h2{font-size:26px;margin-bottom:6px}
@@ -71,7 +75,7 @@ footer h2{font-size:24px}
 @media(max-width:600px){
   .wrap{padding:0 16px}
   .role ul{columns:1}
-  .stage{border-radius:18px;padding:6px}
+  .stage{border-radius:18px;padding:6px;max-width:100%}
   .screen{border-radius:12px}
 }
 </style>
@@ -91,9 +95,9 @@ const SITE = {
   intro: "Portofolio proyek game independen, game jam, dan riset mandiri. Berfokus pada implementasi logic programming, AI behavior, integrasi sistem, dan optimasi performa.",
   cta: "Mau ngobrol atau kerja bareng?",
   contacts: [
-    {label: "Email", href: "mailto:email@kamu.com"},
-    {label: "itch.io", href: "https://billz89.itch.io"},
-    {label: "GitHub", href: "https://github.com"}
+    {label: "Email", email: "oktavianusbillyjonathan@gmail.com", isCopy: true},
+    {label: "itch.io", href: "https://itch.io/profile/billz89"},
+    {label: "GitHub", href: "https://github.com/BillzGHub-2"}
   ]
 };
 
@@ -389,11 +393,35 @@ const GAMES = [
 const $ = id => document.getElementById(id), app = $("app");
 $("brand").textContent = SITE.name;
 $("cta").textContent = SITE.cta;
-$("contacts").innerHTML = SITE.contacts.map(c => `<a class="btn alt" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
+
+/* RENDER TOMBOL CONTACT & FITUR COPY EMAIL */
+function copyEmail(email, btn){
+  navigator.clipboard.writeText(email).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = "✓ Email Disalin!";
+    btn.style.color = "var(--accent)";
+    btn.style.borderColor = "var(--accent)";
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.color = "";
+      btn.style.borderColor = "";
+    }, 2000);
+  }).catch(() => {
+    prompt("Salin alamat email:", email);
+  });
+}
+window.copyEmail = copyEmail;
+
+$("contacts").innerHTML = SITE.contacts.map(c => {
+  if(c.isCopy){
+    return `<button class="btn alt" onclick="copyEmail('${c.email}', this)">${c.label}</button>`;
+  }
+  return `<a class="btn alt" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`;
+}).join("");
 
 function ytId(v){const m = String(v).match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(v) ? v : "")}
 
-/* Fungsi Playback Mendukung YouTube, Video MP4, dan Animasi GIF */
+/* FUNGSI PLAYBACK MEMASTIKAN GIF TAJAM DAN TIDAK MELAR */
 function play(kind, val){
   if(kind === "yt"){
     $("screen").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${val}" title="Video gameplay" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
@@ -418,7 +446,7 @@ function slot(i, src){
 }
 
 function home(){
-  document.title = "Portofolio " + SITE.name;
+  document.title = SITE.name + " | Portofolio Game Developer";
   app.innerHTML = `<div class="hero"><h1>${SITE.headline}</h1><p>${SITE.intro}</p></div>
   <div class="cards">${GAMES.map(g => `<a class="gcard" href="#/g/${g.id}"><div class="cover" style="--g1:${g.g[0]};--g2:${g.g[1]}">${g.photos[0] ? `<img src="${g.photos[0]}" alt="" loading="lazy">` : ""}</div>
   <div class="gbody"><h2>${g.title}</h2><span>${g.genre}</span><p>${g.short}</p></div></a>`).join("")}</div>`;
