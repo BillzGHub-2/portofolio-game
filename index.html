@@ -105,7 +105,7 @@ const GAMES = [
     status: "Rilis di itch.io (Riset Mandiri Kuliah)",
     g: ["#2f855a", "#9ae6b4"],
     youtube: "",
-    src: "video/reverie.gif",
+    src: "reverie.gif",
     photos: [
       "img/reverie-1.png",
       "img/reverie-2.png",
@@ -162,7 +162,7 @@ const GAMES = [
     status: "Selesai (Proyek Tim)",
     g: ["#d97706", "#fef3c7"],
     youtube: "",
-    src: "video/honey.gif",
+    src: "honey.gif",
     photos: [
       "img/honey-1.png",
       "img/honey-2.png",
@@ -219,7 +219,7 @@ const GAMES = [
     status: "Selesai (Proyek Tim Game Jam)",
     g: ["#8b0000", "#1c0a0a"],
     youtube: "",
-    src: "video/bunker.gif",
+    src: "bunker.gif",
     photos: [
       "img/bunker-1.png",
       "img/bunker-2.png",
@@ -276,7 +276,7 @@ const GAMES = [
     status: "Rilis Game Jam (IFEST)",
     g: ["#14a3a8", "#efdcae"],
     youtube: "",
-    src: "video/flight.gif",
+    src: "flight.gif",
     photos: [
       "img/flight-1.jpeg",
       "img/flight-2.jpeg",
@@ -333,7 +333,7 @@ const GAMES = [
     status: "Prototipe Eksperimental (Playable)",
     g: ["#0a7fb0", "#8fd8e8"],
     youtube: "",
-    src: "video/deer.gif",
+    src: "deer.gif",
     photos: [
       "img/deer-1.png",
       "img/deer-2.png",
@@ -405,8 +405,8 @@ function play(kind, val){
 }
 
 function showEmpty(){
-  $("screen").innerHTML = `<div class="empty"><h3>Animasi gameplay belum terpasang</h3><p>Letakkan file di folder <code>video/</code> dengan ekstensi <code>.gif</code> atau pilih file manual di bawah untuk pratinjau.</p>
-  <div class="row"><input type="text" id="url" placeholder="Contoh: video/reverie.gif" aria-label="Link video"><button class="btn" id="go">Putar</button></div>
+  $("screen").innerHTML = `<div class="empty"><h3>Animasi gameplay belum terpasang</h3><p>Pastikan file GIF berada di tempat yang sama dengan <code>index.html</code>.</p>
+  <div class="row"><input type="text" id="url" placeholder="Contoh: reverie.gif" aria-label="Link video"><button class="btn" id="go">Putar</button></div>
   <div class="row"><label class="btn alt" style="cursor:pointer">Pilih file GIF/Video lokal<input type="file" id="file" accept="video/*,image/gif" hidden></label></div></div>`;
   $("go").onclick = () => {const v = $("url").value.trim(); if(!v) return; const id = ytId(v); id ? play("yt", id) : play("file", v)};
   $("file").onchange = e => {const f = e.target.files[0]; if(f) play("file", URL.createObjectURL(f))};
