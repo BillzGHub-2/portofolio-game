@@ -103,6 +103,77 @@ const SITE = {
 
 const GAMES = [
   {
+    id: "stealth-traversal-framework",
+    title: "Stealth Action & Traversal Mechanics",
+    genre: "3D Stealth Action, Parkour Traversal & Tactical AI",
+    status: "Riset Eksperimental (Tech Prototype)",
+    g: ["#0f172a", "#0284c7"],
+    youtube: "",
+    src: "stealth.gif",
+    photos: [
+      "stealth-1.png",
+      "stealth-2.png",
+      "stealth-3.png"
+    ],
+    desc: "Framework sistem gameplay 3D tingkat lanjut yang menggabungkan mekanisme parkour dinamis (ledge grabbing, shimmying, dan mantling berbasis procedural hand IK), sistem sensori AI stealth multi-layer (hearing, graduated vision detection meter, dan post-loss pursuit), sistem lokomosi CS2-style turn-in-place, serta interaksi fisika.",
+    short: "Gameplay & AI Programmer (Parkour Traversal, Stealth AI & Locomotion)",
+    role: "Core Gameplay & Systems Programmer (Locomotion, Traversal & AI Logic)",
+    duties: [
+      "Merancang state machine traversal dan root-motion relay untuk pergerakan tebing (catch, braced hang, shimmy, mantle, dan drop-to-hang)",
+      "Membangun sistem koreksi procedural Hand IK dan Root Offset untuk mengeliminasi clipping tangan dan floating di bibir tebing",
+      "Mengembangkan arsitektur multi-state Enemy AI dengan vision cone bertingkat, memory tracking, noise hearing, dan pencarian mayat/rekan pingsan",
+      "Memprogram lokomosi third-person mutakhir dengan CS2-style leg rotation (planted-foot turning) dan procedural spine camera-twist",
+      "Mengimplementasikan deteksi interaksi capsule reach, physics object carrying, dan kalkulasi preview lintasan lempar (dashed arc trajectory)"
+    ],
+    tags: ["Unity 3D", "Ledge Traversal & IK", "Stealth AI Behavior", "Root Motion Control", "Procedural Locomotion", "Physics Interaction"],
+    method: "Fokus utama riset ini adalah mengeliminasi artifak visual umum pada game 3D (seperti foot-sliding dan penetrasi geometri tebing) melalui sinkronisasi matematika antara CharacterController, Animator Root Motion, dan procedural bone alignment secara real-time.",
+    work: [
+      {
+        t: "Ledge Traversal, Root Motion & Procedural Hand IK",
+        tag: "Traversal System",
+        what: "Menghadirkan sistem panjat tebing yang luwes dan presisi di berbagai geometri tanpa tangan menembus dinding atau melayang.",
+        how: [
+          "Melakukan sampling probe multi-kapsul dan raycast (chest, head, dan top surface) untuk mendeteksi tepi ledge, normal dinding, dan tangent jalan.",
+          "Menerapkan state machine traversal: Airborne Catch, Braced Hanging Idle, Shimmy (kiri-kanan), Mantle to Crouch, dan Drop-to-Hang.",
+          "Mengimplementasikan HangPoseAligner: membaca tulang index/hand dan menyuntikkan delta koreksi halus ke transform controller agar tangan mengunci sempurna di bibir tebing.",
+          "Menyusun hand-lock handoff saat Drop-to-Hang dengan crossfade state mulus ke Braced Hanging Idle."
+        ]
+      },
+      {
+        t: "Tactical Stealth AI, Vision Cone & Post-Loss Tracking",
+        tag: "Enemy AI & Memory",
+        what: "Menciptakan kecerdasan buatan musuh yang bereaksi dinamis terhadap kehadiran pemain, suara, dan rekan yang tumbang.",
+        how: [
+          "Membangun sistem penglihatan dua zona: deteksi instan pada jarak dekat (<2m) dan graduated detection meter (0-100%) pada jarak menengah dengan raycast occlusion checking.",
+          "Merancang Post-Loss Tracking: ketika pandangan terputus, AI memprediksi arah pergerakan pemain selama 2 detik sebelum beralih ke Search Phase di area terakhir terlihat.",
+          "Memprogram sistem patroli dengan Root Motion Turn (90° & 180°) terukur agar musuh berputar tanpa foot-sliding saat tiba di waypoint.",
+          "Mengintegrasikan deteksi rekan tumbang (KnockedOut / Dead) di mana AI musuh mendekat untuk memeriksa dan membangunkan kembali rekan yang pingsan."
+        ]
+      },
+      {
+        t: "CS2-Style Leg Locomotion & Procedural Spine Twist",
+        tag: "Locomotion & Polish",
+        what: "Memberikan rasa kendali third-person yang natural saat pemain menggerakkan kamera bebas tanpa membuat kaki karakter bergeser aneh.",
+        how: [
+          "Menjaga orientasi kaki tetap diam (planted feet) saat pemain melihat sekeliling dalam sudut batas toleransi (free-look threshold 45°).",
+          "Menerapkan rotasi prosedural bertahap pada tulang Spine, Chest, dan Upper Chest untuk mengikuti yaw kamera secara proporsional.",
+          "Memicu animasi step belok 90° secara teratur hanya saat delta sudut kamera dan badan melampaui batas toleransi.",
+          "Mengkuantisasi pergerakan input gerak ke 8 arah relatif terhadap orientasi kamera untuk kontrol yang presisi."
+        ]
+      },
+      {
+        t: "Capsule Reach Interactor & Real-Time Dashed Trajectory",
+        tag: "Physics & Interaction",
+        what: "Menjamin interaksi benda di lantai maupun pintu tinggi terasa konsisten, serta menampilkan prediksi lemparan barang yang intuitif.",
+        how: [
+          "Menggunakan volume jangkauan silinder vertikal (capsule reach) agar objek kecil di lantai dan gagang pintu tinggi memiliki sensitivitas jarak interaksi yang seimbang.",
+          "Membangun sistem angkat benda (ItemCarryController) yang mematikan gravitasi/collider saat digenggam dan menyalurkan impuls lempar dengan torque putar acak.",
+          "Membuat preview lintasan parabola dashed procedural secara dinamis melalui LineRenderer dengan animasi scrolling UV texture berkecepatan stabil."
+        ]
+      }
+    ]
+  },
+  {
     id: "butterfly-reverie",
     title: "Butterfly Reverie",
     genre: "Arcade Survival, 2D Top-Down, Web Game",
