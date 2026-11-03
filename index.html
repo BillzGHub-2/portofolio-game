@@ -1,569 +1,2114 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Billy | Portofolio Game Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700;800&display=swap" rel="stylesheet">
-<style>
-:root{color-scheme:light;--bg:#f8f4ea;--sea:#cdeaf5;--panel:#fffdf8;--text:#0b3b57;--muted:#4f7488;--accent:#0a7fb0;--ink:#fff;--line:#e4d9c2;--screen:#051a27;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
-*,*::before,*::after{box-sizing:border-box}
-body{margin:0;background-color:var(--bg);background-image:linear-gradient(180deg,var(--sea),var(--bg) 460px);background-repeat:no-repeat;color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
-h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.15;letter-spacing:-.02em}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-header{padding:20px 0}
-header a{font:800 20px "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none}
-.hero{padding:30px 0 28px;max-width:760px}
-.hero h1{font-size:clamp(34px,8vw,68px);font-weight:800}
-.hero p{margin:14px 0 0;font-size:17px;color:var(--muted);max-width:56ch}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.gcard{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;display:block;transition:border-color .2s,transform .2s}
-.gcard:active{transform:scale(0.99)}
-.gcard:hover{border-color:var(--accent)}
-.cover{aspect-ratio:16/9;background:linear-gradient(135deg,var(--g1),var(--g2));overflow:hidden}
-.cover img,.gal img{width:100%;height:100%;object-fit:cover;display:block}
-.gbody{padding:16px 18px 18px}
-.gbody h2{font-size:24px}
-.gbody span{font-size:13px;color:var(--muted);display:inline-block;margin-top:2px}
-.gbody p{margin:8px 0 0;font-weight:600;font-size:15px}
-.back{display:inline-flex;align-items:center;gap:6px;margin:0 0 16px;font-size:15px;color:var(--muted);text-decoration:none;padding:6px 0}
-.top h1{font-size:clamp(30px,6vw,54px);font-weight:800}
-.top p{max-width:64ch;color:var(--muted);margin:12px 0 0;font-size:16px}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-.chip{border:1px solid var(--line);background:var(--panel);border-radius:99px;padding:3px 12px;font-size:12.5px;font-weight:500}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Billy | Portofolio Game Developer</title>
+    <!-- Memuat Plus Jakarta Sans untuk ujung huruf lancip & Bricolage Grotesque -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f8f4ea;
+            --sea: #cdeaf5;
+            --panel: #fffdf8;
+            --text: #0b3b57;
+            --muted: #4f7488;
+            --accent: #0a7fb0;
+            --ink: #fff;
+            --line: #e4d9c2;
+            --screen: #051a27;
+            --dark: #06202f;
+            --ease: cubic-bezier(.2,.8,.2,1);
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top,0px);
+            padding-bottom: env(safe-area-inset-bottom,0px)
+        }
 
-/* STAGE PREVIEW LEBIH COMPACT AGAR GIF TAJAM */
-.stage{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:10px;margin:24px auto 0;max-width:780px}
-.screen{aspect-ratio:16/9;border-radius:14px;overflow:hidden;position:relative;display:grid;place-items:center;color:#f4fbff;background:#051a27}
-.screen iframe,.screen video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:cover}
-.screen .gif-view{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#051a27;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
+        html {
+            scroll-padding-top: calc(env(safe-area-inset-top,0px) + 70px);
+            -webkit-text-size-adjust: 100%
+        }
 
-.empty{text-align:center;padding:20px;max-width:460px;background:color-mix(in srgb,var(--screen) 80%,transparent);border-radius:16px}
-.empty h3{font-size:22px;margin-bottom:6px}
-.empty p{margin:0 0 12px;font-size:14px;color:#cfe6f1}
-.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px}
-.row input[type=text]{flex:1 1 200px;min-width:0;padding:10px 12px;border-radius:8px;border:1px solid #3f7a99;background:#0a2f45;color:#f4fbff;font-size:14px}
-.btn{background:var(--accent);color:var(--ink);border:0;border-radius:10px;padding:10px 18px;font-weight:700;text-decoration:none;display:inline-block;text-align:center;min-height:44px;line-height:24px;transition:background .2s,border-color .2s,color .2s}
-.btn.alt{background:transparent;border:1px solid currentColor;font-weight:600;color:inherit}
-.sec{padding:44px 0 0}
-.sec h2{font-size:26px;margin-bottom:6px}
-.sec>p{margin:0 0 16px;color:var(--muted);max-width:64ch;font-size:15px}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
-.gal figure{margin:0;aspect-ratio:16/10;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
-.slot{width:100%;height:100%;display:grid;place-items:center;text-align:center;font-size:14px;color:var(--muted);cursor:pointer;background:repeating-linear-gradient(135deg,var(--panel),var(--panel) 10px,var(--bg) 10px,var(--bg) 20px)}
-.role{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
-.role b{font:700 20px "Bricolage Grotesque",system-ui,sans-serif;display:block}
-.role ul{margin:12px 0 0;padding-left:20px;color:var(--muted);columns:2 260px;column-gap:28px}
-.role li{margin-bottom:8px;break-inside:avoid;font-size:15px}
-.work{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.job{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
-.job h3{font-size:20px}
-.job .tag{font-size:12.5px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
-.job p{margin:8px 0 12px;color:var(--muted);font-size:14.5px}
-.job ol{margin:0;padding:0;list-style:none;counter-reset:s}
-.job li{counter-increment:s;display:flex;gap:10px;margin-bottom:8px;font-size:14.5px}
-.job li::before{content:counter(s);flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent);color:var(--ink);font-weight:800;font-size:12px;display:grid;place-items:center;margin-top:2px}
-.next{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.next .btn{flex:1 1 200px}
-footer{margin-top:52px;padding:30px 0 40px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-footer h2{font-size:24px}
+        *, *::before, *::after {
+            box-sizing: border-box
+        }
 
-@media(max-width:600px){
-  .wrap{padding:0 16px}
-  .role ul{columns:1}
-  .stage{border-radius:18px;padding:6px;max-width:100%}
-  .screen{border-radius:12px}
-}
-</style>
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        body {
+            margin: 0;
+            overflow-x: clip;
+            background-color: var(--bg);
+            background-image: linear-gradient(180deg,var(--sea),var(--bg) 560px);
+            background-repeat: no-repeat;
+            color: var(--text);
+            font: 16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        h1, h2, h3 {
+            font-family: "Plus Jakarta Sans", "Bricolage Grotesque", system-ui, sans-serif;
+            margin: 0;
+            line-height: 1.15;
+            letter-spacing: -.02em
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        a {
+            color: inherit
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+            cursor: pointer
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px
+        }
+
+        /* progress, curtain, cursor */
+        #prog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            z-index: 60
+        }
+
+        #curtain {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            z-index: 90;
+            pointer-events: none;
+            display: grid;
+            place-items: center;
+            clip-path: inset(0)
+        }
+
+            #curtain span {
+                font: 800 clamp(34px,8vw,84px) "Plus Jakarta Sans", "Bricolage Grotesque", system-ui, sans-serif;
+                color: #eaf6fb;
+                letter-spacing: -.03em
+            }
+
+        #ring {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            margin: -18px 0 0 -18px;
+            pointer-events: none;
+            z-index: 200;
+            display: none
+        }
+
+        .cur #ring {
+            display: block
+        }
+
+        #ring::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            transition: transform .3s var(--ease),background .3s
+        }
+
+        #ring::after {
+            content: "+";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity .2s
+        }
+
+        #ring.h::before {
+            transform: scale(1.7);
+            background: rgba(10,127,176,.14)
+        }
+
+        #ring.z::before {
+            transform: scale(2.2);
+            background: rgba(10,127,176,.92)
+        }
+
+        #ring.z::after {
+            opacity: 1
+        }
+
+        /* header */
+        header {
+            position: sticky;
+            top: env(safe-area-inset-top,0px);
+            z-index: 40;
+            padding: 16px 0;
+            transition: background .3s,backdrop-filter .3s,border-color .3s;
+            border-bottom: 1px solid transparent
+        }
+
+            header.sc {
+                background: color-mix(in srgb,var(--bg) 78%,transparent);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                border-color: var(--line)
+            }
+
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        header a#brand {
+            font: 800 20px "Plus Jakarta Sans", "Bricolage Grotesque", system-ui, sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px
+        }
+
+            header a#brand::before {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: var(--accent);
+                animation: pulse 2.4s ease-out infinite
+            }
+
+        /* language switcher */
+        .lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            padding: 3px 6px;
+            box-shadow: 0 4px 12px rgba(10,127,176,.08)
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 3px 10px;
+            border-radius: 99px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--muted);
+            transition: background .2s, color .2s
+        }
+
+            .lang-btn:hover {
+                color: var(--text)
+            }
+
+            .lang-btn.active {
+                background: var(--accent);
+                color: #fff
+            }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(10,127,176,.5)
+            }
+
+            100% {
+                box-shadow: 0 0 0 12px rgba(10,127,176,0)
+            }
+        }
+
+        /* reveal system & text clip fix */
+        .w {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: top;
+            padding: .04em .06em .45em;
+            margin-bottom: -.45em
+        }
+
+            .w > span {
+                display: inline-block;
+                padding-bottom: .22em;
+                margin-bottom: -.22em;
+                transform: translateY(125%);
+                transition: transform 1s var(--ease);
+                transition-delay: calc(var(--i) * 70ms)
+            }
+
+        .go .w > span {
+            transform: none
+        }
+
+        .go .w {
+            overflow: visible
+        }
+
+        .ac > span {
+            background: linear-gradient(100deg,var(--accent),#2bb6c9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            padding-bottom: .22em;
+            margin-bottom: -.22em;
+            display: inline-block
+        }
+
+        .rv {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .9s ease,transform .9s var(--ease);
+            transition-delay: var(--d,0ms)
+        }
+
+            .rv.v {
+                opacity: 1;
+                transform: none
+            }
+
+        /* hero (Ujung kanan 'y' lancip & proporsional) */
+        .hero {
+            position: relative;
+            isolation: isolate;
+            padding: clamp(36px,9vw,110px) 0 8px
+        }
+
+            .hero h1 {
+                font-family: "Plus Jakarta Sans", "Bricolage Grotesque", system-ui, sans-serif;
+                font-size: clamp(40px,9.5vw,118px);
+                font-weight: 800;
+                letter-spacing: -.03em;
+                line-height: 1.22;
+                padding-bottom: 4px
+            }
+
+        .lead {
+            margin: 22px 0 0;
+            font-size: clamp(16px,2vw,19px);
+            color: var(--muted);
+            max-width: 56ch;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .9s .55s,transform .9s .55s var(--ease)
+        }
+
+        .go .lead {
+            opacity: 1;
+            transform: none
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: .55;
+            pointer-events: none;
+            z-index: -1;
+            translate: calc(var(--px,0) * 32px) calc(var(--py,0) * 32px);
+            transition: translate .8s ease-out
+        }
+
+        .b1 {
+            width: 42vw;
+            max-width: 460px;
+            aspect-ratio: 1;
+            background: #7fd3ea;
+            top: -40px;
+            right: -4%;
+            animation: fl 14s ease-in-out infinite alternate
+        }
+
+        .b2 {
+            width: 34vw;
+            max-width: 360px;
+            aspect-ratio: 1;
+            background: #f6d79a;
+            bottom: -60px;
+            left: 28%;
+            animation: fl 18s ease-in-out -6s infinite alternate
+        }
+
+        @keyframes fl {
+            to {
+                transform: translate(40px,30px) scale(1.12)
+            }
+        }
+
+        /* marquee */
+        .mq {
+            overflow: hidden;
+            margin: 56px 0 52px calc(50% - 50vw);
+            width: 100vw;
+            padding: 16px 0
+        }
+
+        .mqt {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: mq 42s linear infinite
+        }
+
+            .mqt span {
+                font: 800 clamp(34px,7vw,88px)/1.32 "Plus Jakarta Sans", "Bricolage Grotesque", system-ui, sans-serif;
+                letter-spacing: -.03em;
+                color: transparent;
+                -webkit-text-stroke: 1.5px var(--text);
+                padding: .12em .3em .32em;
+                white-space: nowrap;
+                display: inline-block;
+                transition: color .3s
+            }
+
+                .mqt span:hover {
+                    color: var(--text)
+                }
+
+            .mqt b {
+                color: var(--accent);
+                align-self: center;
+                font-size: clamp(20px,3vw,36px)
+            }
+
+        @keyframes mq {
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* cards: 5 Porto Utama Seragam */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px
+        }
+
+            .cards > div.rv {
+                flex: 0 0 calc((100% - 40px) / 3);
+                width: calc((100% - 40px) / 3);
+                max-width: calc((100% - 40px) / 3);
+                display: flex
+            }
+
+        @media (max-width: 960px) {
+            .cards > div.rv {
+                flex: 0 0 calc((100% - 20px) / 2);
+                width: calc((100% - 20px) / 2);
+                max-width: calc((100% - 20px) / 2);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cards > div.rv {
+                flex: 0 0 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* experimental cards: Besar di Tengah */
+        .cards.exp-cards > div.rv {
+            flex: 0 1 540px;
+            width: 100%;
+            max-width: 540px
+        }
+
+        .gcard {
+            flex: 1;
+            position: relative;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transform: perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+            transition: transform .25s ease-out,border-color .25s,box-shadow .4s
+        }
+
+            .gcard::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity .3s;
+                background: radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.3),transparent 60%)
+            }
+
+            .gcard:hover {
+                border-color: var(--accent);
+                box-shadow: 0 28px 50px -28px rgba(10,127,176,.55)
+            }
+
+                .gcard:hover::after {
+                    opacity: 1
+                }
+
+        .cover {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg,var(--g1),var(--g2));
+            overflow: hidden
+        }
+
+            .cover img, .gal img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block
+            }
+
+            .cover img {
+                transition: transform .9s var(--ease)
+            }
+
+        .gcard:hover .cover img {
+            transform: scale(1.07)
+        }
+
+        .num {
+            position: absolute;
+            left: 14px;
+            top: 12px;
+            font: 800 13px "Plus Jakarta Sans", system-ui, sans-serif;
+            font-style: normal;
+            color: #fff;
+            background: rgba(5,26,39,.55);
+            backdrop-filter: blur(6px);
+            border-radius: 99px;
+            padding: 2px 10px
+        }
+
+        .arr {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            font-style: normal;
+            transform: translate(8px,-8px) scale(.6);
+            opacity: 0;
+            transition: transform .4s var(--ease),opacity .3s
+        }
+
+        .gcard:hover .arr {
+            transform: none;
+            opacity: 1
+        }
+
+        .gbody {
+            padding: 16px 18px 18px
+        }
+
+            .gbody h2 {
+                font-size: 24px
+            }
+
+            .gbody span {
+                font-size: 13px;
+                color: var(--muted);
+                display: inline-block;
+                margin-top: 2px
+            }
+
+            .gbody p {
+                margin: 8px 0 0;
+                font-weight: 600;
+                font-size: 15px
+            }
+
+        .top {
+            padding-top: 8px
+        }
+
+            .top h1 {
+                font-size: clamp(34px,7vw,76px);
+                font-weight: 800;
+                letter-spacing: -.035em;
+                line-height: 1.15
+            }
+
+            .top p {
+                max-width: 64ch;
+                color: var(--muted);
+                margin: 16px 0 0;
+                font-size: 16px
+            }
+
+        .chips {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 16px
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            border-radius: 99px;
+            padding: 3px 12px;
+            font-size: 12.5px;
+            font-weight: 500;
+            transition: background .2s,color .2s,border-color .2s
+        }
+
+            .chip:hover {
+                background: var(--text);
+                color: #fff;
+                border-color: var(--text)
+            }
+
+        /* stage */
+        .stage {
+            background: var(--panel);
+            border: 2px solid var(--line);
+            border-radius: 22px;
+            padding: 10px;
+            margin: 28px auto 0;
+            max-width: 780px;
+            box-shadow: 0 40px 70px -40px rgba(10,127,176,.5)
+        }
+
+        .screen {
+            aspect-ratio: 16/9;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            display: grid;
+            place-items: center;
+            color: #f4fbff;
+            background: #051a27
+        }
+
+            .screen iframe, .screen video {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+                background: #000;
+                object-fit: cover
+            }
+
+            .screen .gif-view {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                background: #051a27;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges
+            }
+
+        .empty {
+            text-align: center;
+            padding: 20px;
+            max-width: 460px;
+            background: color-mix(in srgb,var(--screen) 80%,transparent);
+            border-radius: 16px
+        }
+
+            .empty h3 {
+                font-size: 22px;
+                margin-bottom: 6px
+            }
+
+            .empty p {
+                margin: 0 0 12px;
+                font-size: 14px;
+                color: #cfe6f1
+            }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px
+        }
+
+            .row input[type=text] {
+                flex: 1 1 200px;
+                min-width: 0;
+                padding: 10px 12px;
+                border-radius: 8px;
+                border: 1px solid #3f7a99;
+                background: #0a2f45;
+                color: #f4fbff;
+                font-size: 14px
+            }
+
+        /* Tombol yang Selalu Centered Vertikal dan Horizontal */
+        .btn {
+            background: var(--accent);
+            color: var(--ink);
+            border: 0;
+            border-radius: 99px;
+            padding: 12px 22px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 48px;
+            line-height: 1.35;
+            transition: background .25s,border-color .25s,color .25s,transform .3s var(--ease)
+        }
+
+            .btn.alt {
+                background: transparent;
+                border: 1px solid currentColor;
+                font-weight: 600;
+                color: inherit
+            }
+
+                .btn.alt:hover {
+                    background: var(--text);
+                    color: #fff;
+                    border-color: var(--text)
+                }
+
+            .btn:not(.alt):hover {
+                background: var(--text)
+            }
+
+            .btn.ok {
+                background: var(--accent) !important;
+                color: #fff !important;
+                border-color: var(--accent) !important
+            }
+
+        /* sections */
+        .sec {
+            padding: 56px 0 0
+        }
+
+            .sec h2 {
+                font-size: clamp(26px,4vw,40px);
+                margin-bottom: 8px;
+                position: relative;
+                display: inline-block
+            }
+
+                .sec h2::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -6px;
+                    height: 3px;
+                    width: 100%;
+                    background: var(--accent);
+                    border-radius: 3px;
+                    transform: scaleX(0);
+                    transform-origin: 0 50%;
+                    transition: transform 1s .3s var(--ease)
+                }
+
+            .sec.v h2::after {
+                transform: scaleX(.18)
+            }
+
+            .sec > p {
+                margin: 12px 0 16px;
+                color: var(--muted);
+                max-width: 64ch;
+                font-size: 15px
+            }
+
+        .gal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+            gap: 14px;
+            margin-top: 22px
+        }
+
+            .gal figure {
+                position: relative;
+                margin: 0;
+                aspect-ratio: 16/10;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid var(--line);
+                background: var(--panel)
+            }
+
+                .gal figure.v {
+                    transition: transform .4s var(--ease),box-shadow .4s,opacity .9s
+                }
+
+                    .gal figure.v:hover {
+                        transform: translateY(-4px);
+                        box-shadow: 0 24px 40px -26px rgba(10,127,176,.6)
+                    }
+
+                .gal figure:has(img) {
+                    cursor: zoom-in
+                }
+
+                    .gal figure:has(img)::after {
+                        content: "+";
+                        position: absolute;
+                        right: 10px;
+                        bottom: 10px;
+                        width: 34px;
+                        height: 34px;
+                        border-radius: 50%;
+                        background: rgba(5,26,39,.72);
+                        color: #fff;
+                        display: grid;
+                        place-items: center;
+                        font-size: 21px;
+                        line-height: 1;
+                        backdrop-filter: blur(6px);
+                        transition: transform .3s var(--ease),background .3s
+                    }
+
+                    .gal figure:has(img):hover::after {
+                        transform: scale(1.15);
+                        background: var(--accent)
+                    }
+
+            .gal img {
+                transition: transform .9s var(--ease)
+            }
+
+            .gal figure:hover img {
+                transform: scale(1.06)
+            }
+
+        .slot {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted);
+            cursor: pointer;
+            background: repeating-linear-gradient(135deg,var(--panel),var(--panel) 10px,var(--bg) 10px,var(--bg) 20px)
+        }
+
+        .role {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 22px
+        }
+
+            .role b {
+                font: 700 20px "Plus Jakarta Sans", system-ui, sans-serif;
+                display: block
+            }
+
+            .role ul {
+                margin: 12px 0 0;
+                padding-left: 20px;
+                color: var(--muted);
+                columns: 2 260px;
+                column-gap: 28px
+            }
+
+            .role li {
+                margin-bottom: 8px;
+                break-inside: avoid;
+                font-size: 15px;
+                opacity: 0;
+                transform: translateX(-12px);
+                transition: opacity .7s,transform .7s var(--ease);
+                transition-delay: calc(var(--k) * 90ms + 250ms)
+            }
+
+            .role.v li, .job.v li {
+                opacity: 1;
+                transform: none
+            }
+
+        .work {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 18px
+        }
+
+        .job {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px
+        }
+
+            .job.v {
+                transition: transform .35s var(--ease),border-color .3s,box-shadow .4s,opacity .9s
+            }
+
+                .job.v:hover {
+                    transform: translateY(-5px);
+                    border-color: var(--accent);
+                    box-shadow: 0 26px 44px -30px rgba(10,127,176,.6)
+                }
+
+            .job h3 {
+                font-size: 20px
+            }
+
+            .job .tag {
+                font-size: 12.5px;
+                color: var(--accent);
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: .03em
+            }
+
+            .job p {
+                margin: 8px 0 12px;
+                color: var(--muted);
+                font-size: 14.5px
+            }
+
+            .job ol {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                counter-reset: s
+            }
+
+            .job li {
+                counter-increment: s;
+                display: flex;
+                gap: 10px;
+                margin-bottom: 8px;
+                font-size: 14.5px;
+                opacity: 0;
+                transform: translateX(-12px);
+                transition: opacity .7s,transform .7s var(--ease);
+                transition-delay: calc(var(--k) * 110ms + 300ms)
+            }
+
+                .job li::before {
+                    content: counter(s);
+                    flex: 0 0 22px;
+                    height: 22px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    color: var(--ink);
+                    font-weight: 800;
+                    font-size: 12px;
+                    display: grid;
+                    place-items: center;
+                    margin-top: 2px
+                }
+
+        /* Navigasi Porto: Selalu Seimbang dan Center */
+        .next {
+            margin-top: 56px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+            .next .btn {
+                flex: 1 1 200px;
+                max-width: 320px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 20px
+            }
+
+        /* footer */
+        .foot {
+            margin-top: 90px;
+            background: var(--dark);
+            color: #eaf6fb;
+            border-radius: 36px 36px 0 0;
+            padding: clamp(44px,8vw,84px) 0 48px
+        }
+
+            .foot .fin {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 28px;
+                flex-wrap: wrap
+            }
+
+            .foot h2 {
+                font-size: clamp(28px,5vw,60px);
+                letter-spacing: -.035em;
+                max-width: 15ch;
+                margin: 0
+            }
+
+            .foot .row {
+                justify-content: flex-start;
+                align-items: center;
+                gap: 12px;
+                margin: 0
+            }
+
+            .foot .btn.alt:hover {
+                background: #fff;
+                color: var(--dark);
+                border-color: #fff
+            }
+
+        /* lightbox */
+        #lb {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: grid;
+            place-items: center
+        }
+
+            #lb[hidden] {
+                display: none
+            }
+
+        #lbg {
+            position: absolute;
+            inset: 0;
+            background: rgba(3,15,22,.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px)
+        }
+
+        .lb-f {
+            position: relative;
+            margin: 0;
+            width: var(--w,780px);
+            aspect-ratio: 16/9;
+            background: #051a27;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px -20px #000;
+            transition: width .5s var(--ease);
+            touch-action: pan-y
+        }
+
+            .lb-f img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                display: block;
+                cursor: zoom-in;
+                user-select: none;
+                -webkit-user-drag: none
+            }
+
+            .lb-f.big img {
+                cursor: zoom-out
+            }
+
+        .lb-bar {
+            position: absolute;
+            top: max(14px,env(safe-area-inset-top,0px));
+            left: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #eaf6fb;
+            font-size: 14px;
+            pointer-events: none
+        }
+
+            .lb-bar span {
+                margin-right: auto;
+                background: rgba(255,255,255,.1);
+                border-radius: 99px;
+                padding: 4px 12px
+            }
+
+        .lb-b {
+            pointer-events: auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.25);
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            font-size: 20px;
+            line-height: 1;
+            display: grid;
+            place-items: center;
+            backdrop-filter: blur(8px);
+            transition: background .2s
+        }
+
+            .lb-b:hover {
+                background: var(--accent)
+            }
+
+        .lb-n {
+            position: absolute;
+            top: 50%;
+            margin-top: -22px
+        }
+
+            .lb-n.prev {
+                left: 16px
+            }
+
+            .lb-n.next {
+                right: 16px
+            }
+
+        #lb.one .lb-n {
+            display: none
+        }
+
+        @media(max-width:600px) {
+            .wrap {
+                padding: 0 16px
+            }
+
+            .role ul {
+                columns: 1
+            }
+
+            .stage {
+                border-radius: 18px;
+                padding: 6px;
+                max-width: 100%
+            }
+
+            .screen {
+                border-radius: 12px
+            }
+
+            .foot {
+                border-radius: 26px 26px 0 0
+            }
+
+                .foot .fin {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 20px
+                }
+
+            .lb-n {
+                top: auto;
+                bottom: max(18px,env(safe-area-inset-bottom,0px));
+                margin: 0
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .w > span, .rv, .lead, .role li, .job li {
+                opacity: 1;
+                transform: none
+            }
+
+            #curtain {
+                display: none
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="#/" id="brand"></a></header>
-<main id="app"></main>
-<footer><h2 id="cta"></h2><div class="row" id="contacts" style="margin:0"></div></footer>
-</div>
+    <div id="prog"></div>
+    <div id="curtain"><span id="cname"></span></div>
+    <div id="ring"></div>
+    <header id="top">
+        <div class="wrap header-wrap">
+            <a href="#/" id="brand"></a>
+            <div class="lang-switch" role="group" aria-label="Language Selector">
+                <button class="lang-btn" id="btn-id" onclick="setLang('id')">ID</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </header>
+    <div class="wrap"><main id="app"></main></div>
+    <footer class="foot"><div class="wrap fin"><h2 id="cta" class="rv"></h2><div class="row rv" id="contacts"></div></div></footer>
 
-<script>
-/* ============ KONFIGURASI PORTOFOLIO ============ */
-const SITE = {
-  name: "Billy",
-  headline: "Game Developer & Gameplay Programmer",
-  intro: "Portofolio proyek game independen, game jam, dan riset mandiri. Berfokus pada implementasi logic programming, AI behavior, integrasi sistem, dan optimasi performa.",
-  cta: "Mau ngobrol atau kerja bareng?",
-  contacts: [
-    {label: "Email", email: "oktavianusbillyjonathan@gmail.com", isCopy: true},
-    {label: "itch.io", href: "https://itch.io/profile/billz89"},
-    {label: "GitHub", href: "https://github.com/BillzGHub-2"}
-  ]
-};
+    <div id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto game">
+        <div id="lbg"></div>
+        <figure class="lb-f" id="lbf"><img id="lbi" alt="" draggable="false" class="zm"></figure>
+        <div class="lb-bar"><span id="lbc"></span><button class="lb-b" id="lbz" aria-label="Perbesar atau perkecil">⤢</button><button class="lb-b" id="lbx" aria-label="Tutup">✕</button></div>
+        <button class="lb-b lb-n prev" id="lbp" aria-label="Sebelumnya">‹</button>
+        <button class="lb-b lb-n next" id="lbn" aria-label="Berikutnya">›</button>
+    </div>
 
-/* Game dengan experimental:true akan tampil di section "Experimental" pada beranda.
-   Urutan array menentukan tombol "Game berikutnya" (game utama dulu, experimental di akhir). */
-const GAMES = [
-  {
-    id: "butterfly-reverie",
-    title: "Butterfly Reverie",
-    genre: "Arcade Survival, 2D Top-Down, Web Game",
-    status: "Rilis di itch.io (Riset Mandiri Kuliah)",
-    g: ["#2f855a", "#9ae6b4"],
-    youtube: "",
-    src: "reverie.gif",
-    photos: [
-      "img/reverie-1.png",
-      "img/reverie-2.png",
-      "img/reverie-3.png"
-    ],
-    desc: "Game arcade santai namun menantang yang dikembangkan sebagai proyek riset mandiri kampus. Pemain mengendalikan kupu-kupu yang bertahan hidup di lingkungan liar dengan menghindari serangga predator agresif dan mengumpulkan bunga di setiap level langsung melalui peramban web.",
-    short: "Solo Developer (Fokus: Logic Programming & Web Game)",
-    role: "Solo Developer & Gameplay Programmer",
-    duties: [
-      "Mengembangkan seluruh core loop permainan dari konsep level, kontrol, hingga deployment web (WebGL)",
-      "Merancang logic programming untuk pola serangan serangga predator (looping, boolean, dan rotation)",
-      "Membangun sistem level selection (15 level) dan panduan tutorial interaktif 4 langkah",
-      "Melakukan iterasi dan optimasi performa agar game berjalan stabil tanpa lag di browser"
-    ],
-    tags: ["Unity WebGL", "2D Arcade", "Math & Logic Pattern", "Solo Project", "itch.io"],
-    method: "Sebagai game pertama yang dideploy ke web, fokus utama adalah memecah perilaku musuh menjadi sistem matematika pola berbasis looping, rotasi terukur, dan interval waktu spawn.",
-    work: [
-      {
+    <script>
+        /* ============ SISTEM MULTI-BAHASA & KONFIGURASI ============ */
+        let currentLang = localStorage.getItem("site_lang") || "id";
+
+        const I18N = {
+        id: {
+        titleSuffix: " | Portofolio Game Developer",
+        headline: "Game Developer & Gameplay Programmer",
+        intro: "Portofolio proyek game independen, game jam, dan riset mandiri. Berfokus pada implementasi logic programming, AI behavior, integrasi sistem, dan optimasi performa.",
+        cta: "Mau ngobrol atau kerja bareng?",
+        copied: "✓ Email Disalin!",
+        copyPrompt: "Salin alamat email:",
+        expTitle: "Experimental",
+        expDesc: "Riset dan tech prototype mandiri yang belum menjadi game utuh, berfokus pada sistem gameplay dan AI.",
+        secPhotos: "Foto game",
+        secRole: "Peran saya",
+        secWork: "Kerjaan saya dan cara mengembangkannya",
+        btnAll: "Semua Game",
+        zoomPhoto: "Perbesar foto",
+        emptyTitle: "Animasi gameplay belum terpasang",
+        emptyDesc: "Pastikan file GIF berada di tempat yang sama dengan <code>index.html</code>.",
+        emptyInputPlaceholder: "Contoh: reverie.gif",
+        emptyPlayBtn: "Putar",
+        emptyLocalBtn: "Pilih file GIF/Video lokal"
+        },
+        en: {
+        titleSuffix: " | Game Developer Portfolio",
+        headline: "Game Developer & Gameplay Programmer",
+        intro: "Portfolio of independent games, game jam submissions, and self-directed research. Focused on logic programming, AI behaviors, systems integration, and performance optimization.",
+        cta: "Interested in chatting or working together?",
+        copied: "✓ Email Copied!",
+        copyPrompt: "Copy email address:",
+        expTitle: "Experimental",
+        expDesc: "Independent research and tech prototypes focused on core gameplay systems, locomotion, and AI architectures.",
+        secPhotos: "Game Screenshots",
+        secRole: "My Role",
+        secWork: "Technical Breakdown & Implementation",
+        btnAll: "All Games",
+        zoomPhoto: "Zoom screenshot",
+        emptyTitle: "Gameplay preview not attached",
+        emptyDesc: "Ensure the GIF file is located in the same directory as <code>index.html</code>.",
+        emptyInputPlaceholder: "e.g.: reverie.gif",
+        emptyPlayBtn: "Play",
+        emptyLocalBtn: "Choose local GIF/Video file"
+        }
+        };
+
+        const SITE = {
+        name: "Billy",
+        contacts: [
+        {label: "Email", email: "oktavianusbillyjonathan@gmail.com", isCopy: true},
+        {label: "itch.io", href: "https://itch.io/profile/billz89"},
+        {label: "GitHub", href: "https://github.com/BillzGHub-2"}
+        ]
+        };
+
+        /* Game dengan experimental:true akan tampil di section "Experimental" pada beranda. */
+        const GAMES = [
+        {
+        id: "butterfly-reverie",
+        title: "Butterfly Reverie",
+        genre: "Arcade Survival, 2D Top-Down, Web Game",
+        genre_en: "Arcade Survival, 2D Top-Down, Web Game",
+        status: "Rilis di itch.io (Riset Mandiri Kuliah)",
+        status_en: "Released on itch.io (University Research)",
+        g: ["#2f855a", "#9ae6b4"],
+        youtube: "",
+        src: "reverie.gif",
+        photos: [
+        "img/reverie-1.png",
+        "img/reverie-2.png",
+        "img/reverie-3.png"
+        ],
+        desc: "Game arcade santai namun menantang yang dikembangkan sebagai proyek riset mandiri kampus. Pemain mengendalikan kupu-kupu yang bertahan hidup di lingkungan liar dengan menghindari serangga predator agresif dan mengumpulkan bunga di setiap level langsung melalui peramban web.",
+        desc_en: "A casual yet challenging arcade survival game developed as a university independent research project. Players control a butterfly surviving in the wild by evading aggressive predator insects and collecting flowers across levels directly in the browser.",
+        short: "Solo Developer (Fokus: Logic Programming & Web Game)",
+        short_en: "Solo Developer (Focus: Logic Programming & Web Game)",
+        role: "Solo Developer & Gameplay Programmer",
+        role_en: "Solo Developer & Gameplay Programmer",
+        duties: [
+        "Mengembangkan seluruh core loop permainan dari konsep level, kontrol, hingga deployment web (WebGL)",
+        "Merancang logic programming untuk pola serangan serangga predator (looping, boolean, dan rotation)",
+        "Membangun sistem level selection (15 level) dan panduan tutorial interaktif 4 langkah",
+        "Melakukan iterasi dan optimasi performa agar game berjalan stabil tanpa lag di browser"
+        ],
+        duties_en: [
+        "Developed the complete core gameplay loop from level concepts, player controls, to web deployment (WebGL)",
+        "Programmed predator insect attack patterns using mathematical looping, booleans, and rotation logic",
+        "Engineered a 15-stage level selection system and an interactive 4-step onboarding tutorial",
+        "Conducted iterations and performance optimizations to ensure smooth, lag-free gameplay in browsers"
+        ],
+        tags: ["Unity WebGL", "2D Arcade", "Math & Logic Pattern", "Solo Project", "itch.io"],
+        method: "Sebagai game pertama yang dideploy ke web, fokus utama adalah memecah perilaku musuh menjadi sistem matematika pola berbasis looping, rotasi terukur, dan interval waktu spawn.",
+        method_en: "As my first web-deployed title, the primary focus was deconstructing enemy behaviors into modular mathematical patterns utilizing loops, calibrated rotations, and spawn interval timers.",
+        work: [
+        {
         t: "Pola Serangan Lebah (Pattern Spawning & Rotating)",
+        t_en: "Bee Attack Formations (Pattern Spawning & Rotating)",
         tag: "AI & Logic",
         what: "Membuat pola terbang musuh yang ritmis dan teratur agar tantangan menghindar terasa adil dan dinamis.",
+        what_en: "Created rhythmic and structured enemy flight paths to make avoidance challenges fair and dynamic.",
         how: [
-          "Menerapkan kombinasi looping, boolean, dan rotasi matematika untuk membentuk formasi lintasan lebah.",
-          "Menggunakan coroutine timer untuk memunculkan lebah bertahap (contoh: spawn titik 1, jeda 0.5 detik, lalu spawn titik 2).",
-          "Mereset orientasi dan mendaur ulang objek saat melewati batas layar agar performa browser tetap optimal."
+        "Menerapkan kombinasi looping, boolean, dan rotasi matematika untuk membentuk formasi lintasan lebah.",
+        "Menggunakan coroutine timer untuk memunculkan lebah bertahap (contoh: spawn titik 1, jeda 0.5 detik, lalu spawn titik 2).",
+        "Mereset orientasi dan mendaur ulang objek saat melewati batas layar agar performa browser tetap optimal."
+        ],
+        how_en: [
+        "Applied a combination of looping, booleans, and rotation math to generate dynamic bee trajectories.",
+        "Utilized coroutine timers for phased enemy waves (e.g., spawn at node 1, wait 0.5s, spawn at node 2).",
+        "Reset orientation and recycled entities beyond screen bounds to maintain browser performance."
         ]
-      },
-      {
+        },
+        {
         t: "Kontrol Kursor Mouse Halus & Koleksi Bunga",
+        t_en: "Smooth Mouse Cursor Controls & Objective Gathering",
         tag: "Mekanik Inti",
+        tag_en: "Core Mechanics",
         what: "Memberikan rasa kendali yang luwes bagi pemain saat bermanuver menghindari duri dan mengumpulkan objektif.",
+        what_en: "Delivered responsive and fluid controls for players navigating hazards and collecting flowers.",
         how: [
-          "Mengonversi posisi kursor mouse di layar ke koordinat 2D dunia secara real-time dengan interpolasi pergerakan halus.",
-          "Mendeteksi trigger tabrakan antara kupu-kupu dengan bunga untuk menambah progres level.",
-          "Membuat deteksi bahaya instan saat menyentuh duri (thorns) atau serangga lain yang memicu reset level."
+        "Mengonversi posisi kursor mouse di layar ke koordinat 2D dunia secara real-time dengan interpolasi pergerakan halus.",
+        "Mendeteksi trigger tabrakan antara kupu-kupu dengan bunga untuk menambah progres level.",
+        "Membuat deteksi bahaya instan saat menyentuh duri (thorns) atau serangga lain yang memicu reset level."
+        ],
+        how_en: [
+        "Converted screen mouse positions into 2D world coordinates in real-time with smooth movement interpolation.",
+        "Detected 2D trigger collisions between player and flowers to increment stage progression.",
+        "Implemented instantaneous hazard detection on contact with thorns or predators to trigger stage resets."
         ]
-      },
-      {
+        },
+        {
         t: "Level Selection, Tutorial & Build WebGL",
+        t_en: "Level Selection, Tutorial & WebGL Build",
         tag: "Arsitektur Game",
+        tag_en: "Architecture",
         what: "Menyajikan alur onboarding pemain dan sistem pemilihan 15 stage permainan yang siap diakses di itch.io.",
+        what_en: "Constructed onboarding guidance and a 15-stage selection menu ready for play on itch.io.",
         how: [
-          "Membuat menu pemilihan level hingga 15 stage dengan indikator status progres yang rapi.",
-          "Menyusun tutorial 4 panel (Thorns, Bugs, Mouse Control, Collect Flowers) untuk onboarding pemain baru.",
-          "Mengoptimasi aset dan memory footprint agar game dimuat cepat di peramban web tanpa frame drop."
+        "Membuat menu pemilihan level hingga 15 stage dengan indikator status progres yang rapi.",
+        "Menyusun tutorial 4 panel (Thorns, Bugs, Mouse Control, Collect Flowers) untuk onboarding pemain baru.",
+        "Mengoptimasi aset dan memory footprint agar game dimuat cepat di peramban web tanpa frame drop."
+        ],
+        how_en: [
+        "Engineered a 15-stage selection menu with clean progression status indicators.",
+        "Assembled a 4-panel visual tutorial (Thorns, Bugs, Mouse Control, Collect Flowers) for onboarding.",
+        "Optimized sprite assets and WebGL memory footprint for fast load times and zero frame drops."
         ]
-      }
-    ]
-  },
-  {
-    id: "honey-war",
-    title: "Honey War",
-    genre: "3D Action RPG & Tower Defense",
-    status: "Selesai (Proyek Tim)",
-    g: ["#d97706", "#fef3c7"],
-    youtube: "",
-    src: "honey.gif",
-    photos: [
-      "img/honey-1.png",
-      "img/honey-2.png",
-      "img/honey-3.png"
-    ],
-    desc: "Game 3D Tower Defense RPG bernuansa anime di mana pemain tidak hanya membangun menara, tetapi turun langsung sebagai Guardian Bee bertarung membasmi invasi tawon (wasp invasion) demi melindungi sarang lebah.",
-    short: "Game Programmer (Enemy AI, Towers & 3D Optimization)",
-    role: "Game Programmer (Enemy Behavior, Tower System & 3D Optimization)",
-    duties: [
-      "Memprogram AI behavior dan state logic musuh invasi tawon dari tahap spawn hingga penyerangan",
-      "Mengimplementasikan Object Pooling untuk manajemen ratusan unit musuh dan proyektil panah",
-      "Merancang logika mekanik pembangunan, upgrade, dan penjualan menara pertahanan (Archer, Honey Bomb, Barracks)",
-      "Melakukan profiling dan optimalisasi aset 3D agar game berjalan mulus di tengah kerumunan musuh (swarm)"
-    ],
-    tags: ["Unity 3D", "Object Pooling", "Enemy Behavior AI", "Tower Defense", "3D Optimization"],
-    method: "Bekerja sama dalam tim multi-disiplin, fokus utama saya adalah merancang sistem backend gameplay loop yang modular serta memastikan stabilitas performa grafis 3D saat ratusan entitas berada di layar.",
-    work: [
-      {
+        }
+        ]
+        },
+        {
+        id: "honey-war",
+        title: "Honey War",
+        genre: "3D Action RPG & Tower Defense",
+        genre_en: "3D Action RPG & Tower Defense",
+        status: "Selesai (Proyek Tim)",
+        status_en: "Completed (Team Project)",
+        g: ["#d97706", "#fef3c7"],
+        youtube: "",
+        src: "honey.gif",
+        photos: [
+        "img/honey-1.png",
+        "img/honey-2.png",
+        "img/honey-3.png"
+        ],
+        desc: "Game 3D Tower Defense RPG bernuansa anime di mana pemain tidak hanya membangun menara, tetapi turun langsung sebagai Guardian Bee bertarung membasmi invasi tawon (wasp invasion) demi melindungi sarang lebah.",
+        desc_en: "An anime-styled 3D Tower Defense RPG where players not only erect defensive structures, but also fight on the frontline as a Guardian Bee to repel invading wasp swarms and safeguard the hive.",
+        short: "Game Programmer (Enemy AI, Towers & 3D Optimization)",
+        short_en: "Game Programmer (Enemy AI, Towers & 3D Optimization)",
+        role: "Game Programmer (Enemy Behavior, Tower System & 3D Optimization)",
+        role_en: "Game Programmer (Enemy Behavior, Tower System & 3D Optimization)",
+        duties: [
+        "Memprogram AI behavior dan state logic musuh invasi tawon dari tahap spawn hingga penyerangan",
+        "Mengimplementasikan Object Pooling untuk manajemen ratusan unit musuh dan proyektil panah",
+        "Merancang logika mekanik pembangunan, upgrade, dan penjualan menara pertahanan (Archer, Honey Bomb, Barracks)",
+        "Melakukan profiling dan optimalisasi aset 3D agar game berjalan mulus di tengah kerumunan musuh (swarm)"
+        ],
+        duties_en: [
+        "Programmed enemy AI behaviors and state logic for the wasp invasion from spawn phase to combat",
+        "Implemented Object Pooling for efficient management of hundreds of enemy units and arrow projectiles",
+        "Architected defense tower construction, upgrade, and sell mechanics (Archer, Honey Bomb, Barracks)",
+        "Conducted profiling and 3D asset optimization to maintain smooth framerates during large enemy swarms"
+        ],
+        tags: ["Unity 3D", "Object Pooling", "Enemy Behavior AI", "Tower Defense", "3D Optimization"],
+        method: "Bekerja sama dalam tim multi-disiplin, fokus utama saya adalah merancang sistem backend gameplay loop yang modular serta memastikan stabilitas performa grafis 3D saat ratusan entitas berada di layar.",
+        method_en: "Collaborating in a multidisciplinary team, my main focus was engineering a modular gameplay backend loop and ensuring 3D graphical stability with hundreds of simultaneous active entities on screen.",
+        work: [
+        {
         t: "Behavior AI & State Machine Musuh",
+        t_en: "Enemy Behavior AI & Finite State Machine",
         tag: "AI Programming",
         what: "Menentukan secara tegas kapabilitas dan batasan perilaku tawon penyerbu agar pertempuran terarah.",
+        what_en: "Defined clear capabilities and behavioral boundaries for invading wasps to structure combat pacing.",
         how: [
-          "Mendefinisikan batasan behavior: kapan tawon mengejar pemain, kapan menyerang jalur utama, dan kapan fokus menghancurkan sarang.",
-          "Mengatur logika pathfinding dan jarak serang musuh jenis Archer dan melee wasp.",
-          "Memastikan transisi state (patrol, aggro, attack, die) terpanggil sinkron dengan animasi dan collision."
+        "Mendefinisikan batasan behavior: kapan tawon mengejar pemain, kapan menyerang jalur utama, dan kapan fokus menghancurkan sarang.",
+        "Mengatur logika pathfinding dan jarak serang musuh jenis Archer dan melee wasp.",
+        "Memastikan transisi state (patrol, aggro, attack, die) terpanggil sinkron dengan animasi dan collision."
+        ],
+        how_en: [
+        "Defined behavior boundaries: prioritizing hive destruction, lane advancing, or engaging the player.",
+        "Configured NavMesh pathfinding rules and distinct engagement ranges for archers and melee wasps.",
+        "Ensured synchronized state transitions (patrol, aggro, attack, die) with animator states and hitboxes."
         ]
-      },
-      {
+        },
+        {
         t: "Object Pooling System untuk Musuh & Panah",
+        t_en: "Object Pooling System for Swarms & Projectiles",
         tag: "Optimasi Performa",
+        tag_en: "Optimization",
         what: "Mencegah lag spike dan lonjakan Garbage Collector akibat instansiasi terus-menerus saat wave tawon besar datang.",
+        what_en: "Prevented GC pressure and stuttering caused by repetitive instantiate/destroy calls during heavy waves.",
         how: [
-          "Membuat pool khusus yang dapat didaur ulang untuk prefab musuh tawon dan proyektil panah Archer.",
-          "Menggantikan pemanggilan Instantiate/Destroy dengan sistem aktivasi enable/disable transform.",
-          "Mereset state health, parameter kecepatan, dan target aim setiap kali entitas dikeluarkan kembali dari pool."
+        "Membuat pool khusus yang dapat didaur ulang untuk prefab musuh tawon dan proyektil panah Archer.",
+        "Menggantikan pemanggilan Instantiate/Destroy dengan sistem aktivasi enable/disable transform.",
+        "Mereset state health, parameter kecepatan, dan target aim setiap kali entitas dikeluarkan kembali dari pool."
+        ],
+        how_en: [
+        "Constructed generic reusable object pools for both wasp prefabs and archer arrow projectiles.",
+        "Replaced Instantiate/Destroy calls with active transform toggling and pooled lifecycle delegates.",
+        "Reset health values, movement speeds, and aim targets each time an entity was fetched from the pool."
         ]
-      },
-      {
+        },
+        {
         t: "Sistem Konstruksi Tower & Optimalisasi 3D",
+        t_en: "Tower Construction System & 3D Optimization",
         tag: "Sistem Menara",
+        tag_en: "Tower Systems",
         what: "Membangun sistem interaksi bagi pemain untuk mendirikan Forager's Hut, menara ofensif, dan barikade lebah.",
+        what_en: "Built interactive placement and progression mechanics for player defenses and resource structures.",
         how: [
-          "Memprogram deteksi build point dengan highlight visual interaktif (menekan tombol E di titik pondasi).",
-          "Menghubungkan konsumsi sumber daya (Wood, Stone, Honey) saat membangun atau meng-upgrade menara.",
-          "Melakukan optimasi draw call dan LOD aset 3D lingkungan agar frame rate stabil selama wave berlangsung."
+        "Memprogram deteksi build point dengan highlight visual interaktif (menekan tombol E di titik pondasi).",
+        "Menghubungkan konsumsi sumber daya (Wood, Stone, Honey) saat membangun atau meng-upgrade menara.",
+        "Melakukan optimasi draw call dan LOD aset 3D lingkungan agar frame rate stabil selama wave berlangsung."
+        ],
+        how_en: [
+        "Programmed foundation node proximity detection with visual interact cues (pressing 'E' at build sockets).",
+        "Connected resource management (Wood, Stone, Honey) with construction and tier upgrade logic.",
+        "Optimized draw calls, mesh colliders, and environment LODs to preserve high framerates during intense waves."
         ]
-      }
-    ]
-  },
-  {
-    id: "bunker-protocol",
-    title: "Bunker Protocol",
-    genre: "UI-Based Survival Horror, Point & Click",
-    status: "Selesai (Proyek Tim Game Jam)",
-    g: ["#8b0000", "#1c0a0a"],
-    youtube: "",
-    src: "bunker.gif",
-    photos: [
-      "img/bunker-1.png",
-      "img/bunker-2.png",
-      "img/bunker-3.png"
-    ],
-    desc: "Game survival berbasis antarmuka singkat tentang teknisi shift malam di bunker bawah tanah. Pemain harus memantau radar terminal, merespons alarm darurat, memperbaiki ruangan malfungsi lewat minigame, dan mengirim tentara untuk membendung serbuan mutan/zombie hingga fajar jam 6 pagi.",
-    short: "UI Juicing Programmer & Technical Integrator",
-    role: "UI Juicing & Technical Integration Programmer",
-    duties: [
-      "Menggabungkan modul mekanik dari Programmer 1 dan Programmer 2 ke dalam alur game yang utuh",
-      "Menyusun workflow kolaborasi kode, GDD ringkas, dan standardisasi variabel antar programmer",
-      "Menerapkan UI juicing (efek layar monitor CRT, visual feedback, dan transisi atmosfer horor)",
-      "Memprogram sistem kendali interaksi mouse untuk pemilihan sektor pertahanan dan minigame"
-    ],
-    tags: ["Unity 2D", "UI Juicing", "Team Workflow", "Code Integration", "Survival Horror"],
-    method: "Menjembatani kode dari beberapa programmer melalui kontrak arsitektur yang jelas: menyiapkan shared variable yang siap dikonsumsi bersama, dokumentasi brief yang rapi, dan pemolesan antarmuka agar survival berbasis UI terasa mencekam.",
-    work: [
-      {
+        }
+        ]
+        },
+        {
+        id: "bunker-protocol",
+        title: "Bunker Protocol",
+        genre: "UI-Based Survival Horror, Point & Click",
+        genre_en: "UI-Based Survival Horror, Point & Click",
+        status: "Selesai (Proyek Tim Game Jam)",
+        status_en: "Completed (Game Jam Team Project)",
+        g: ["#8b0000", "#1c0a0a"],
+        youtube: "",
+        src: "bunker.gif",
+        photos: [
+        "img/bunker-1.png",
+        "img/bunker-2.png",
+        "img/bunker-3.png"
+        ],
+        desc: "Game survival berbasis antarmuka singkat tentang teknisi shift malam di bunker bawah tanah. Pemain harus memantau radar terminal, merespons alarm darurat, memperbaiki ruangan malfungsi lewat minigame, dan mengirim tentara untuk membendung serbuan mutan/zombie hingga fajar jam 6 pagi.",
+        desc_en: "An interface-driven survival horror game portraying a night-shift technician in an underground bunker. Players monitor radar terminals, react to emergency alarms, resolve electrical malfunctions through minigames, and deploy military squads to hold off mutant breaches until 6:00 AM.",
+        short: "UI Juicing Programmer & Technical Integrator",
+        short_en: "UI Juicing Programmer & Technical Integrator",
+        role: "UI Juicing & Technical Integration Programmer",
+        role_en: "UI Juicing & Technical Integration Programmer",
+        duties: [
+        "Menggabungkan modul mekanik dari Programmer 1 dan Programmer 2 ke dalam alur game yang utuh",
+        "Menyusun workflow kolaborasi kode, GDD ringkas, dan standardisasi variabel antar programmer",
+        "Menerapkan UI juicing (efek layar monitor CRT, visual feedback, dan transisi atmosfer horor)",
+        "Memprogram sistem kendali interaksi mouse untuk pemilihan sektor pertahanan dan minigame"
+        ],
+        duties_en: [
+        "Merged modular gameplay systems from Programmer 1 and Programmer 2 into a cohesive game flow",
+        "Established team code collaboration workflows, concise GDD documentation, and cross-programmer variable standardization",
+        "Implemented UI juicing (CRT monitor screen shaders, reactive visual feedback, and atmospheric horror transitions)",
+        "Programmed mouse interaction systems for defensive sector dispatching and interactive minigames"
+        ],
+        tags: ["Unity 2D", "UI Juicing", "Team Workflow", "Code Integration", "Survival Horror"],
+        method: "Menjembatani kode dari beberapa programmer melalui kontrak arsitektur yang jelas: menyiapkan shared variable yang siap dikonsumsi bersama, dokumentasi brief yang rapi, dan pemolesan antarmuka agar survival berbasis UI terasa mencekam.",
+        method_en: "Bridged systems developed by multiple engineers using strict architectural contracts: clean shared variables, concise technical documentation, and deep UI polish to make interface-driven horror tactile and tense.",
+        work: [
+        {
         t: "Workflow Integrasi Kode & Variabel Bersama",
+        t_en: "Code Integration Workflow & Shared State Contracts",
         tag: "Arsitektur Tim",
+        tag_en: "Team Architecture",
         what: "Memastikan programmer terpisah dapat menyambungkan fitur masing-masing tanpa konflik kode.",
+        what_en: "Guaranteed seamless integration between distinct programmer modules without merge conflicts.",
         how: [
-          "Mendefinisikan variabel global/state bersama (contoh: state boolean 'DoorOpened' untuk status buka-tutup blast door).",
-          "Menyusun dokumentasi dan brief teknis singkat agar programmer lain dapat langsung memanfaatkan event pintu tanpa mengubah script internal.",
-          "Menghubungkan sistem malfungsi minigame dengan status suplai daya cadangan bunker secara mulus."
+        "Mendefinisikan variabel global/state bersama (contoh: state boolean 'DoorOpened' untuk status buka-tutup blast door).",
+        "Menyusun dokumentasi dan brief teknis singkat agar programmer lain dapat langsung memanfaatkan event pintu tanpa mengubah script internal.",
+        "Menghubungkan sistem malfungsi minigame dengan status suplai daya cadangan bunker secara mulus."
+        ],
+        how_en: [
+        "Standardized global state delegates and shared properties (e.g., 'DoorOpened' blast door states).",
+        "Authored technical briefs enabling teammates to hook into event systems without touching core scripts.",
+        "Coupled minigame room failures directly to the central bunker auxiliary power reserve."
         ]
-      },
-      {
+        },
+        {
         t: "UI Juicing & Umpan Balik Terminal Horor",
+        t_en: "UI Juicing & Retro Horror Terminal Feedback",
         tag: "Polishing UI",
+        tag_en: "UI Polish",
         what: "Mengubah game yang didominasi teks dan antarmuka menjadi pengalaman survival yang menegangkan.",
+        what_en: "Elevated text-heavy telemetry screens into an immersive, nerve-wracking horror command station.",
         how: [
-          "Menerapkan efek visual CRT, kedipan lampu darurat merah, dan audio cue saat ada sektor bunker yang dijebol zombie.",
-          "Menambahkan micro-interaction, feedback hover/klik pada layar radar, dan transisi status sektor yang reaktif.",
-          "Menjaga keterbacaan layout radar agar pemain tetap bisa membuat keputusan cepat di bawah tekanan waktu."
+        "Menerapkan efek visual CRT, kedipan lampu darurat merah, dan audio cue saat ada sektor bunker yang dijebol zombie.",
+        "Menambahkan micro-interaction, feedback hover/klik pada layar radar, dan transisi status sektor yang reaktif.",
+        "Menjaga keterbacaan layout radar agar pemain tetap bisa membuat keputusan cepat di bawah tekanan waktu."
+        ],
+        how_en: [
+        "Crafted retro CRT scanlines, pulsing red alert lighting, and sudden audio stings upon containment breaches.",
+        "Engineered tactile micro-interactions, responsive radar node hover/click states, and warning banners.",
+        "Preserved crisp UI hierarchy so players could make split-second tactical decisions under pressure."
         ]
-      },
-      {
+        },
+        {
         t: "Mekanik Respons Taktis & Minigame Ruangan",
+        t_en: "Tactical Response Mechanics & Room Minigames",
         tag: "Gameplay Loop",
+        tag_en: "Gameplay Loop",
         what: "Mengatur prioritas pemain antara aksi menahan zombie atau memperbaiki fasilitas vital bunker.",
+        what_en: "Balanced player triage between dispatching combat units and repairing critical facilities.",
         how: [
-          "Memprogram sistem klik ruangan pada peta untuk mengerahkan regu tentara membasmi mutan yang menyusup.",
-          "Mengintegrasikan penyelesaian minigame elektrik untuk memulihkan fungsi operasional sektor yang padam.",
-          "Mengatur kondisi akhir: kegagalan sektor berantai menuju Game Over atau bertahan hidup hingga pukul 06:00."
+        "Memprogram sistem klik ruangan pada peta untuk mengerahkan regu tentara membasmi mutan yang menyusup.",
+        "Mengintegrasikan penyelesaian minigame elektrik untuk memulihkan fungsi operasional sektor yang padam.",
+        "Mengatur kondisi akhir: kegagalan sektor berantai menuju Game Over atau bertahan hidup hingga pukul 06:00."
+        ],
+        how_en: [
+        "Programmed room-click command dispatches sending armed squads to intercept mutant breaches.",
+        "Integrated interactive wiring minigames required to restore offline sector functions.",
+        "Managed game-over cascades upon catastrophic power failures versus surviving until the 06:00 dawn."
         ]
-      }
-    ]
-  },
-  {
-    id: "nicholas-flight",
-    title: "Nicholas's Flight",
-    genre: "Grid Puzzle & Room Exploration, 2D Pixel Art",
-    status: "Rilis Game Jam (IFEST)",
-    g: ["#14a3a8", "#efdcae"],
-    youtube: "",
-    src: "flight.gif",
-    photos: [
-      "img/flight-1.jpeg",
-      "img/flight-2.jpeg",
-      "img/flight-3.jpeg"
-    ],
-    desc: "Nicholas bangun kesiangan dan penerbangannya segera lepas landas. Pemain harus menjelajahi rumah mencari barang-barang bawaan penting, lalu memecahkan puzzle inventaris berbasis petak koper dengan ruang terbatas sebelum waktu habis.",
-    short: "Gameplay Programmer & Level Layout Designer",
-    role: "Gameplay Programmer & Level Exploration Designer",
-    duties: [
-      "Merancang layout eksplorasi ruangan (kamar tidur, lorong, gudang) yang intuitif untuk pencarian barang",
-      "Memprogram sistem transparansi dinamis pada dinding saat karakter berada di baliknya",
-      "Membangun mekanik grid puzzle koper (navigasi WASD, rotasi item R, dan deteksi penempatan)",
-      "Mengintegrasikan checklist Task (TDL) dan batas waktu (time limit) untuk menghadirkan pacing yang intens"
-    ],
-    tags: ["Game Jam", "2D Pixel Art", "Dynamic Transparency", "Grid Inventory", "Level Design"],
-    method: "Menggabungkan desain tata letak level yang ringkas dengan sentuhan programming yang tepat sasaran agar game jam sederhana terasa terpoles rapi dan nyaman dimainkan.",
-    work: [
-      {
+        }
+        ]
+        },
+        {
+        id: "nicholas-flight",
+        title: "Nicholas's Flight",
+        genre: "Grid Puzzle & Room Exploration, 2D Pixel Art",
+        genre_en: "Grid Puzzle & Room Exploration, 2D Pixel Art",
+        status: "Rilis Game Jam (IFEST)",
+        status_en: "Game Jam Release (IFEST)",
+        g: ["#14a3a8", "#efdcae"],
+        youtube: "",
+        src: "flight.gif",
+        photos: [
+        "img/flight-1.jpeg",
+        "img/flight-2.jpeg",
+        "img/flight-3.jpeg"
+        ],
+        desc: "Nicholas bangun kesiangan dan penerbangannya segera lepas landas. Pemain harus menjelajahi rumah mencari barang-barang bawaan penting, lalu memecahkan puzzle inventaris berbasis petak koper dengan ruang terbatas sebelum waktu habis.",
+        desc_en: "Nicholas overslept and his flight departs shortly. Players search every room to gather vital travel items and solve a spatial grid inventory packing puzzle within a strict countdown.",
+        short: "Gameplay Programmer & Level Layout Designer",
+        short_en: "Gameplay Programmer & Level Layout Designer",
+        role: "Gameplay Programmer & Level Exploration Designer",
+        role_en: "Gameplay Programmer & Level Exploration Designer",
+        duties: [
+        "Merancang layout eksplorasi ruangan (kamar tidur, lorong, gudang) yang intuitif untuk pencarian barang",
+        "Memprogram sistem transparansi dinamis pada dinding saat karakter berada di baliknya",
+        "Membangun mekanik grid puzzle koper (navigasi WASD, rotasi item R, dan deteksi penempatan)",
+        "Mengintegrasikan checklist Task (TDL) dan batas waktu (time limit) untuk menghadirkan pacing yang intens"
+        ],
+        duties_en: [
+        "Designed intuitive room exploration layouts (bedroom, hallway, attic) for item searching",
+        "Programmed dynamic wall transparency when the player walks behind foreground structures",
+        "Built suitcase grid puzzle mechanics (WASD navigation, 'R' item rotation, and placement validation)",
+        "Integrated task checklists (TDL) and time limits to deliver intense game jam pacing"
+        ],
+        tags: ["Game Jam", "2D Pixel Art", "Dynamic Transparency", "Grid Inventory", "Level Design"],
+        method: "Menggabungkan desain tata letak level yang ringkas dengan sentuhan programming yang tepat sasaran agar game jam sederhana terasa terpoles rapi dan nyaman dimainkan.",
+        method_en: "Combined concise level exploration layouts with targeted gameplay mechanics to deliver a polished, intuitive, and cohesive game jam experience.",
+        work: [
+        {
         t: "Transparansi Tembok Dinamis (Occlusion Polish)",
+        t_en: "Dynamic Wall Transparency (Occlusion Polish)",
         tag: "Visual Mechanic",
         what: "Mencegah sudut pandang pemain terhalang saat karakter berjalan di belakang dinding depan rumah.",
+        what_en: "Eliminated camera obstruction whenever the character navigates behind foreground architectural geometry.",
         how: [
-          "Mendeteksi posisi karakter saat berada di belakang objek dinding atau furnitur menggunakan trigger 2D.",
-          "Menurunkan tingkat opacity/alpha dinding depan menjadi 20% secara transisi halus saat karakter berada di baliknya.",
-          "Mengembalikan opacity ke 100% saat karakter keluar dari area tertutup, mempertahankan pandangan yang jelas."
+        "Mendeteksi posisi karakter saat berada di belakang objek dinding atau furnitur menggunakan trigger 2D.",
+        "Menurunkan tingkat opacity/alpha dinding depan menjadi 20% secara transisi halus saat karakter berada di baliknya.",
+        "Mengembalikan opacity ke 100% saat karakter keluar dari area tertutup, mempertahankan pandangan yang jelas."
+        ],
+        how_en: [
+        "Detected character occlusion using 2D boundary triggers on foreground walls and tall furniture.",
+        "Interpolated wall sprite alpha smoothly down to 20% upon entry to maintain unobstructed visibility.",
+        "Restored full opacity seamlessly as the player stepped back into clear room sightlines."
         ]
-      },
-      {
+        },
+        {
         t: "Mekanik Grid Puzzle & Rotasi Barang (R)",
+        t_en: "Grid Puzzle System & Item Rotation ('R')",
         tag: "Mekanik Inti",
+        tag_en: "Core Mechanics",
         what: "Membangun sistem penataan barang bawaan ke dalam petak koper berkapasitas terbatas.",
+        what_en: "Engineered a spatial inventory packing system within the tight constraints of a travel suitcase.",
         how: [
-          "Membuat sistem matriks grid koper dengan navigasi kursor keyboard (WASD).",
-          "Menerapkan fungsi rotasi bentuk barang 90 derajat dengan menekan tombol 'R'.",
-          "Memvalidasi peletakan: barang hanya bisa dimasukkan jika semua petak kosong dan tidak bertumpuk."
+        "Membuat sistem matriks grid koper dengan navigasi kursor keyboard (WASD).",
+        "Menerapkan fungsi rotasi bentuk barang 90 derajat dengan menekan tombol 'R'.",
+        "Memvalidasi peletakan: barang hanya bisa dimasukkan jika semua petak kosong dan tidak bertumpuk."
+        ],
+        how_en: [
+        "Built a 2D matrix grid coordinate system driven by keyboard cursor navigation (WASD).",
+        "Programmed 90-degree item rotation algorithms via the 'R' key, adjusting bounding shapes instantly.",
+        "Enforced cell validation rules: items can only be slotted into unoccupied, non-overlapping coordinates."
         ]
-      },
-      {
+        },
+        {
         t: "Layout Eksplorasi, Task List & Time Limit",
+        t_en: "Exploration Layout, Task List & Countdown Flow",
         tag: "Level Flow",
         what: "Membangun pacing game yang cepat dan adiktif khas game jam.",
+        what_en: "Established quick-fire exploration pacing driven by an interactive checklist and impending deadline.",
         how: [
-          "Merancang penempatan item tersembunyi di ruangan berdebu dan kamar tidur dengan petunjuk visual.",
-          "Mengintegrasikan papan clipboard Task (TDL) yang mencatat progres pengumpulan barang secara real-time.",
-          "Menghubungkan jam digital countdown ke layar Game Over jika waktu habis sebelum koper terisi rapi."
+        "Merancang penempatan item tersembunyi di ruangan berdebu dan kamar tidur dengan petunjuk visual.",
+        "Mengintegrasikan papan clipboard Task (TDL) yang mencatat progres pengumpulan barang secara real-time.",
+        "Menghubungkan jam digital countdown ke layar Game Over jika waktu habis sebelum koper terisi rapi."
+        ],
+        how_en: [
+        "Positioned collectible luggage items in bedrooms and attics with subtle contextual art cues.",
+        "Integrated a real-time clipboard task list (TDL) tracking collected versus packed items.",
+        "Bound the digital countdown timer directly to game over triggers if the packing was incomplete."
         ]
-      }
-    ]
-  },
-  {
-    id: "who-is-the-deer",
-    title: "Who is the Deer?",
-    genre: "Asymmetric Multiplayer, 2D Top-Down, Online",
-    status: "Prototipe Eksperimental (Playable)",
-    g: ["#0a7fb0", "#8fd8e8"],
-    youtube: "",
-    src: "deer.gif",
-    photos: [
-      "img/deer-1.png",
-      "img/deer-2.png",
-      "img/deer-3.png"
-    ],
-    desc: "Proyek eksperimental multiplayer asimetris 2D berbasis tugas kuliah Unity Networking. Satu pemain bertindak sebagai Hunter bersenjata panah, sementara pemain lain menyamar menjadi rusa di antara kawanan rusa bot NPC untuk makan dan bertahan hidup.",
-    short: "Multiplayer Network Programmer & Mechanic Designer",
-    role: "Multiplayer Network Programmer (Netcode for GameObjects & UTP)",
-    duties: [
-      "Mengimplementasikan arsitektur multiplayer menggunakan Netcode for GameObjects (NGO) dan Unity Transport (UTP)",
-      "Merancang logic hosting di mana Device 1 bertindak sebagai Server otoriter sekaligus Player aktif (Host/Client)",
-      "Mengembangkan fog of war di sisi server untuk menjaga integritas mekanik stealth dan anti-wallhack",
-      "Memprogram sinkronisasi kawanan AI rusa bot, alur match (Day Hunt/Night), dan sistem rematch bersih"
-    ],
-    tags: ["Unity 6", "Netcode for GameObjects", "Unity Transport (UTP)", "Host/Client Networking", "Multiplayer"],
-    method: "Mengembangkan prototipe jaringan dengan fokus utama pada otoritas server (server-authoritative) menggunakan Unity Transport, memastikan perhitungan jarak pandang dan identitas rusa aman dari manipulasi sisi klien.",
-    work: [
-      {
+        }
+        ]
+        },
+        {
+        id: "who-is-the-deer",
+        title: "Who is the Deer?",
+        genre: "Asymmetric Multiplayer, 2D Top-Down, Online",
+        genre_en: "Asymmetric Multiplayer, 2D Top-Down, Online",
+        status: "Prototipe Eksperimental (Playable)",
+        status_en: "Playable Prototype (University Coursework)",
+        g: ["#0a7fb0", "#8fd8e8"],
+        youtube: "",
+        src: "deer.gif",
+        photos: [
+        "img/deer-1.png",
+        "img/deer-2.png",
+        "img/deer-3.png"
+        ],
+        desc: "Proyek eksperimental multiplayer asimetris 2D berbasis tugas kuliah Unity Networking. Satu pemain bertindak sebagai Hunter bersenjata panah, sementara pemain lain menyamar menjadi rusa di antara kawanan rusa bot NPC untuk makan dan bertahan hidup.",
+        desc_en: "An experimental 2D asymmetric multiplayer game developed for university networking coursework. One player acts as an armed Hunter, while the other disguises as a deer among NPC herds to feed and survive unnoticed.",
+        short: "Multiplayer Network Programmer & Mechanic Designer",
+        short_en: "Multiplayer Network Programmer & Mechanic Designer",
+        role: "Multiplayer Network Programmer (Netcode for GameObjects & UTP)",
+        role_en: "Multiplayer Network Programmer (Netcode for GameObjects & UTP)",
+        duties: [
+        "Mengimplementasikan arsitektur multiplayer menggunakan Netcode for GameObjects (NGO) dan Unity Transport (UTP)",
+        "Merancang logic hosting di mana Device 1 bertindak sebagai Server otoriter sekaligus Player aktif (Host/Client)",
+        "Mengembangkan fog of war di sisi server untuk menjaga integritas mekanik stealth dan anti-wallhack",
+        "Memprogram sinkronisasi kawanan AI rusa bot, alur match (Day Hunt/Night), dan sistem rematch bersih"
+        ],
+        duties_en: [
+        "Implemented multiplayer architecture using Netcode for GameObjects (NGO) and Unity Transport (UTP)",
+        "Engineered Host-as-Server logic where Device 1 acts as authoritative Server while running a local player client",
+        "Developed server-side fog of war to protect stealth mechanics and prevent client wallhacks",
+        "Programmed NPC deer flock synchronization, match flow cycles (Day Hunt / Night), and clean scene rematching"
+        ],
+        tags: ["Unity 6", "Netcode for GameObjects", "Unity Transport (UTP)", "Host/Client Networking", "Multiplayer"],
+        method: "Mengembangkan prototipe jaringan dengan fokus utama pada otoritas server (server-authoritative) menggunakan Unity Transport, memastikan perhitungan jarak pandang dan identitas rusa aman dari manipulasi sisi klien.",
+        method_en: "Engineered networking systems with a strict server-authoritative model over Unity Transport, guaranteeing that visibility limits and hidden player identities are safe from client-side tampering.",
+        work: [
+        {
         t: "Arsitektur Host-as-Server dengan Unity Transport",
+        t_en: "Host-as-Server Architecture with Unity Transport",
         tag: "Networking Core",
         what: "Membangun sesi multiplayer di mana satu perangkat menjadi Server utama sekaligus menjalankan client lokal pemain.",
+        what_en: "Built synchronized sessions where one machine serves as authoritative Server while hosting a local player.",
         how: [
-          "Mengonfigurasi NetworkManager berbasis Unity Transport (UTP) untuk transmisi data UDP latensi rendah.",
-          "Memprogram alur Host: inisialisasi server, pembuatan session, dan spawning avatar Hunter atau Rusa secara otomatis.",
-          "Menangani sinkronisasi state bergabungnya client tamu ke dalam room tanpa menimbulkan desinkronisasi objek."
+        "Mengonfigurasi NetworkManager berbasis Unity Transport (UTP) untuk transmisi data UDP latensi rendah.",
+        "Memprogram alur Host: inisialisasi server, pembuatan session, dan spawning avatar Hunter atau Rusa secara otomatis.",
+        "Menangani sinkronisasi state bergabungnya client tamu ke dalam room tanpa menimbulkan desinkronisasi objek."
+        ],
+        how_en: [
+        "Configured NetworkManager over Unity Transport (UTP) for lightweight, low-latency UDP packet transmission.",
+        "Programmed the Host lifecycle: server initialization, session negotiation, and role-based avatar spawning.",
+        "Handled guest client join state replication to ensure zero desynchronization upon room entry."
         ]
-      },
-      {
+        },
+        {
         t: "Fog of War di Sisi Server (Anti-Wallhack)",
+        t_en: "Server-Authoritative Fog of War (Anti-Wallhack)",
         tag: "Keamanan Jaringan",
+        tag_en: "Network Security",
         what: "Menjaga kejutan identitas rusa dengan memastikan server hanya mengirim data visual yang berhak dilihat oleh Hunter.",
+        what_en: "Preserved stealth integrity by ensuring the server only distributes visual data the Hunter is permitted to see.",
         how: [
-          "Menghitung radius dan arah pandang Hunter langsung di sisi Server, bukan di sisi Client Hunter.",
-          "Server memanggil fungsi NetworkHide untuk menyembunyikan entitas pemain rusa yang berada di luar jangkauan pandang.",
-          "Menerapkan efek vignette visual di layar Hunter dan memastikan shading tidak menutupi informasi HUD antarmuka."
+        "Menghitung radius dan arah pandang Hunter langsung di sisi Server, bukan di sisi Client Hunter.",
+        "Server memanggil fungsi NetworkHide untuk menyembunyikan entitas pemain rusa yang berada di luar jangkauan pandang.",
+        "Menerapkan efek vignette visual di layar Hunter dan memastikan shading tidak menutupi informasi HUD antarmuka."
+        ],
+        how_en: [
+        "Evaluated Hunter sight cones and occlusion checks directly on the authoritative Server instance.",
+        "Invoked NetworkHide on hidden entities so position packets outside vision ranges never reach the Hunter client.",
+        "Integrated dynamic sight vignette shaders while preserving crisp HUD overlay readability."
         ]
-      },
-      {
+        },
+        {
         t: "Sinkronisasi Bot Rusa & Siklus Match Flow",
+        t_en: "NPC Herd Synchronization & Match Flow Cycles",
         tag: "Gameplay Loop",
         what: "Menyamarkan pemain rusa di antara kerumunan bot NPC rusa yang bergerak secara identik dan tersinkronisasi.",
+        what_en: "Blended the player deer among NPC herds exhibiting identical synchronized wandering and grazing behaviors.",
         how: [
-          "Mensinkronisasikan posisi, animasi makan, dan pergerakan kawanan rusa di seluruh client via NetworkTransform.",
-          "Memprogram fase permainan terstruktur: Fase Countdown, Fase Day Hunt (mencari makan), hingga Fase Malam.",
-          "Membuat penentuan status akhir (Hunter Win / Deer Win) serta tombol Main Lagi (rematch) yang mereset scene dari keadaan bersih."
+        "Mensinkronisasikan posisi, animasi makan, dan pergerakan kawanan rusa di seluruh client via NetworkTransform.",
+        "Memprogram fase permainan terstruktur: Fase Countdown, Fase Day Hunt (mencari makan), hingga Fase Malam.",
+        "Membuat penentuan status akhir (Hunter Win / Deer Win) serta tombol Main Lagi (rematch) yang mereset scene dari keadaan bersih."
+        ],
+        how_en: [
+        "Synchronized wander paths, grazing animations, and speeds across all clients via NetworkTransform.",
+        "Programmed structured match states: Countdown Phase, Day Grazing Phase, and Night Lockdown Phase.",
+        "Evaluated win conditions (Hunter Win / Deer Win) alongside a clean rematch handler that resets scene states."
         ]
-      }
-    ]
-  },
-  {
-    id: "stealth-traversal-framework",
-    experimental: true,
-    title: "Stealth Action & Traversal Mechanics",
-    genre: "3D Stealth Action, Parkour Traversal & Tactical AI",
-    status: "Riset Eksperimental (Tech Prototype)",
-    g: ["#0f172a", "#0284c7"],
-    youtube: "",
-    src: "stealth.gif",
-    photos: [
-      "img/stealth-1.png",
-      "img/stealth-2.png",
-      "img/stealth-3.png"
-    ],
-    desc: "Framework sistem gameplay 3D tingkat lanjut yang menggabungkan mekanisme parkour dinamis (ledge grabbing, shimmying, dan mantling berbasis procedural hand IK), sistem sensori AI stealth multi-layer (hearing, graduated vision detection meter, dan post-loss pursuit), sistem lokomosi CS2-style turn-in-place, serta interaksi fisika.",
-    short: "Gameplay & AI Programmer (Parkour Traversal, Stealth AI & Locomotion)",
-    role: "Core Gameplay & Systems Programmer (Locomotion, Traversal & AI Logic)",
-    duties: [
-      "Merancang state machine traversal dan root-motion relay untuk pergerakan tebing (catch, braced hang, shimmy, mantle, dan drop-to-hang)",
-      "Membangun sistem koreksi procedural Hand IK dan Root Offset untuk mengeliminasi clipping tangan dan floating di bibir tebing",
-      "Mengembangkan arsitektur multi-state Enemy AI dengan vision cone bertingkat, memory tracking, noise hearing, dan pencarian mayat/rekan pingsan",
-      "Memprogram lokomosi third-person mutakhir dengan CS2-style leg rotation (planted-foot turning) dan procedural spine camera-twist",
-      "Mengimplementasikan deteksi interaksi capsule reach, physics object carrying, dan kalkulasi preview lintasan lempar (dashed arc trajectory)"
-    ],
-    tags: ["Unity 3D", "Ledge Traversal & IK", "Stealth AI Behavior", "Root Motion Control", "Procedural Locomotion", "Physics Interaction"],
-    method: "Fokus utama riset ini adalah mengeliminasi artifak visual umum pada game 3D (seperti foot-sliding dan penetrasi geometri tebing) melalui sinkronisasi matematika antara CharacterController, Animator Root Motion, dan procedural bone alignment secara real-time.",
-    work: [
-      {
+        }
+        ]
+        },
+        {
+        id: "stealth-traversal-framework",
+        experimental: true,
+        title: "Stealth Action & Traversal Mechanics",
+        genre: "3D Stealth Action, Parkour Traversal & Tactical AI",
+        genre_en: "3D Stealth Action, Parkour Traversal & Tactical AI",
+        status: "Riset Eksperimental (Tech Prototype)",
+        status_en: "Experimental Research (Tech Prototype)",
+        g: ["#0f172a", "#0284c7"],
+        youtube: "",
+        src: "stealth.gif",
+        photos: [
+        "img/stealth-1.png",
+        "img/stealth-2.png",
+        "img/stealth-3.png"
+        ],
+        desc: "Framework sistem gameplay 3D tingkat lanjut yang menggabungkan mekanisme parkour dinamis (ledge grabbing, shimmying, dan mantling berbasis procedural hand IK), sistem sensori AI stealth multi-layer (hearing, graduated vision detection meter, dan post-loss pursuit), sistem lokomosi CS2-style turn-in-place, serta interaksi fisika.",
+        desc_en: "An advanced 3D gameplay framework combining dynamic parkour mechanics (ledge grabbing, shimmying, and mantling with procedural hand IK), multi-layered stealth sensory AI (hearing, graduated vision detection meters, post-loss pursuit), CS2-style turn-in-place locomotion, and physics interactions.",
+        short: "Gameplay & AI Programmer (Parkour Traversal, Stealth AI & Locomotion)",
+        short_en: "Gameplay & AI Programmer (Parkour Traversal, Stealth AI & Locomotion)",
+        role: "Core Gameplay & Systems Programmer (Locomotion, Traversal & AI Logic)",
+        role_en: "Core Gameplay & Systems Programmer (Locomotion, Traversal & AI Logic)",
+        duties: [
+        "Merancang state machine traversal dan root-motion relay untuk pergerakan tebing (catch, braced hang, shimmy, mantle, dan drop-to-hang)",
+        "Membangun sistem koreksi procedural Hand IK dan Root Offset untuk mengeliminasi clipping tangan dan floating di bibir tebing",
+        "Mengembangkan arsitektur multi-state Enemy AI dengan vision cone bertingkat, memory tracking, noise hearing, dan pencarian mayat/rekan pingsan",
+        "Memprogram lokomosi third-person mutakhir dengan CS2-style leg rotation (planted-foot turning) dan procedural spine camera-twist",
+        "Mengimplementasikan deteksi interaksi capsule reach, physics object carrying, dan kalkulasi preview lintasan lempar (dashed arc trajectory)"
+        ],
+        duties_en: [
+        "Engineered traversal state machines and root-motion relays for ledge navigation (catch, braced hang, shimmy, mantle, drop-to-hang)",
+        "Built procedural Hand IK and Root Offset correction systems to eliminate hand-clipping and floating on ledges",
+        "Developed multi-state Enemy AI architectures featuring graduated vision cones, memory tracking, noise hearing, and fallen comrade checks",
+        "Programmed cutting-edge third-person locomotion with CS2-style planted-foot rotation and procedural spine camera-twist",
+        "Implemented capsule-reach interaction detection, physics object carrying, and real-time dashed arc trajectory calculations"
+        ],
+        tags: ["Unity 3D", "Ledge Traversal & IK", "Stealth AI Behavior", "Root Motion Control", "Procedural Locomotion", "Physics Interaction"],
+        method: "Fokus utama riset ini adalah mengeliminasi artifak visual umum pada game 3D (seperti foot-sliding dan penetrasi geometri tebing) melalui sinkronisasi matematika antara CharacterController, Animator Root Motion, dan procedural bone alignment secara real-time.",
+        method_en: "The primary objective of this research is eliminating common 3D artifacts (foot-sliding, ledge penetration) through mathematical synchronization between CharacterController, Animator Root Motion, and real-time procedural bone alignment.",
+        work: [
+        {
         t: "Ledge Traversal, Root Motion & Procedural Hand IK",
+        t_en: "Ledge Traversal, Root Motion & Procedural Hand IK",
         tag: "Traversal System",
         what: "Menghadirkan sistem panjat tebing yang luwes dan presisi di berbagai geometri tanpa tangan menembus dinding atau melayang.",
+        what_en: "Engineered fluid and tactile parkour traversal across varied geometries without hand clipping or floating.",
         how: [
-          "Melakukan sampling probe multi-kapsul dan raycast (chest, head, dan top surface) untuk mendeteksi tepi ledge, normal dinding, dan tangent jalan.",
-          "Menerapkan state machine traversal: Airborne Catch, Braced Hanging Idle, Shimmy (kiri-kanan), Mantle to Crouch, dan Drop-to-Hang.",
-          "Mengimplementasikan HangPoseAligner: membaca tulang index/hand dan menyuntikkan delta koreksi halus ke transform controller agar tangan mengunci sempurna di bibir tebing.",
-          "Menyusun hand-lock handoff saat Drop-to-Hang dengan crossfade state mulus ke Braced Hanging Idle."
+        "Melakukan sampling probe multi-kapsul dan raycast (chest, head, dan top surface) untuk mendeteksi tepi ledge, normal dinding, dan tangent jalan.",
+        "Menerapkan state machine traversal: Airborne Catch, Braced Hanging Idle, Shimmy (kiri-kanan), Mantle to Crouch, dan Drop-to-Hang.",
+        "Mengimplementasikan HangPoseAligner: membaca tulang index/hand dan menyuntikkan delta koreksi halus ke transform controller agar tangan mengunci sempurna di bibir tebing.",
+        "Menyusun hand-lock handoff saat Drop-to-Hang dengan crossfade state mulus ke Braced Hanging Idle."
+        ],
+        how_en: [
+        "Performed multi-capsule and raycast sampling (chest, head, top surface) to detect ledges, surface normals, and tangents.",
+        "Implemented a traversal state machine: Airborne Catch, Braced Hang, Shimmying, Mantle to Crouch, and Drop-to-Hang.",
+        "Engineered HangPoseAligner: reads hand bone transforms and injects subtle offsets to lock hands onto ledge lips without clipping.",
+        "Designed a hand-lock handoff during Drop-to-Hang actions with smooth crossfades into Braced Hanging Idle."
         ]
-      },
-      {
+        },
+        {
         t: "Tactical Stealth AI, Vision Cone & Post-Loss Tracking",
+        t_en: "Tactical Stealth AI, Vision Cones & Post-Loss Tracking",
         tag: "Enemy AI & Memory",
         what: "Menciptakan kecerdasan buatan musuh yang bereaksi dinamis terhadap kehadiran pemain, suara, dan rekan yang tumbang.",
+        what_en: "Created responsive enemy AI that reacts dynamically to player presence, auditory stimuli, and downed comrades.",
         how: [
-          "Membangun sistem penglihatan dua zona: deteksi instan pada jarak dekat (<2m) dan graduated detection meter (0-100%) pada jarak menengah dengan raycast occlusion checking.",
-          "Merancang Post-Loss Tracking: ketika pandangan terputus, AI memprediksi arah pergerakan pemain selama 2 detik sebelum beralih ke Search Phase di area terakhir terlihat.",
-          "Memprogram sistem patroli dengan Root Motion Turn (90° & 180°) terukur agar musuh berputar tanpa foot-sliding saat tiba di waypoint.",
-          "Mengintegrasikan deteksi rekan tumbang (KnockedOut / Dead) di mana AI musuh mendekat untuk memeriksa dan membangunkan kembali rekan yang pingsan."
+        "Membangun sistem penglihatan dua zona: deteksi instan pada jarak dekat (<2m) dan graduated detection meter (0-100%) pada jarak menengah dengan raycast occlusion checking.",
+        "Merancang Post-Loss Tracking: ketika pandangan terputus, AI memprediksi arah pergerakan pemain selama 2 detik sebelum beralih ke Search Phase di area terakhir terlihat.",
+        "Memprogram sistem patroli dengan Root Motion Turn (90° & 180°) terukur agar musuh berputar tanpa foot-sliding saat tiba di waypoint.",
+        "Mengintegrasikan deteksi rekan tumbang (KnockedOut / Dead) di mana AI musuh mendekat untuk memeriksa dan membangunkan kembali rekan yang pingsan."
+        ],
+        how_en: [
+        "Engineered two-tier vision: instant alert on close proximity (<2m) and graduated detection meters (0-100%) at medium range with raycast occlusion.",
+        "Designed Post-Loss Tracking: when line of sight breaks, AI predicts player vectors for 2s before transitioning to search patterns at the last known position.",
+        "Programmed patrol behaviors with calibrated Root Motion turns (90° & 180°) to prevent foot-sliding at waypoints.",
+        "Integrated downed-ally detection (KnockedOut / Dead): AI investigates and revives unconscious comrades."
         ]
-      },
-      {
+        },
+        {
         t: "CS2-Style Leg Locomotion & Procedural Spine Twist",
+        t_en: "CS2-Style Leg Locomotion & Procedural Spine Twist",
         tag: "Locomotion & Polish",
         what: "Memberikan rasa kendali third-person yang natural saat pemain menggerakkan kamera bebas tanpa membuat kaki karakter bergeser aneh.",
+        what_en: "Delivered natural third-person responsiveness during free camera orbit without causing disorienting foot-slide.",
         how: [
-          "Menjaga orientasi kaki tetap diam (planted feet) saat pemain melihat sekeliling dalam sudut batas toleransi (free-look threshold 45°).",
-          "Menerapkan rotasi prosedural bertahap pada tulang Spine, Chest, dan Upper Chest untuk mengikuti yaw kamera secara proporsional.",
-          "Memicu animasi step belok 90° secara teratur hanya saat delta sudut kamera dan badan melampaui batas toleransi.",
-          "Mengkuantisasi pergerakan input gerak ke 8 arah relatif terhadap orientasi kamera untuk kontrol yang presisi."
+        "Menjaga orientasi kaki tetap diam (planted feet) saat pemain melihat sekeliling dalam sudut batas toleransi (free-look threshold 45°).",
+        "Menerapkan rotasi prosedural bertahap pada tulang Spine, Chest, dan Upper Chest untuk mengikuti yaw kamera secara proporsional.",
+        "Memicu animasi step belok 90° secara teratur hanya saat delta sudut kamera dan badan melampaui batas toleransi.",
+        "Mengkuantisasi pergerakan input gerak ke 8 arah relatif terhadap orientasi kamera untuk kontrol yang presisi."
+        ],
+        how_en: [
+        "Preserved planted-feet orientation when orbiting the camera within a 45° free-look threshold.",
+        "Applied procedural rotation distributed across Spine, Chest, and Upper Chest bones to track camera yaw proportionally.",
+        "Triggered 90° turn-in-place step animations only when camera-to-body angular delta exceeded thresholds.",
+        "Quantized movement input into 8 discrete directions relative to active camera orientation for crisp handling."
         ]
-      },
-      {
+        },
+        {
         t: "Capsule Reach Interactor & Real-Time Dashed Trajectory",
+        t_en: "Capsule Reach Interactor & Real-Time Dashed Trajectory",
         tag: "Physics & Interaction",
         what: "Menjamin interaksi benda di lantai maupun pintu tinggi terasa konsisten, serta menampilkan prediksi lemparan barang yang intuitif.",
+        what_en: "Guaranteed consistent interaction reach between floor items and elevated doors, alongside intuitive throw prediction.",
         how: [
-          "Menggunakan volume jangkauan silinder vertikal (capsule reach) agar objek kecil di lantai dan gagang pintu tinggi memiliki sensitivitas jarak interaksi yang seimbang.",
-          "Membangun sistem angkat benda (ItemCarryController) yang mematikan gravitasi/collider saat digenggam dan menyalurkan impuls lempar dengan torque putar acak.",
-          "Membuat preview lintasan parabola dashed procedural secara dinamis melalui LineRenderer dengan animasi scrolling UV texture berkecepatan stabil."
+        "Menggunakan volume jangkauan silinder vertikal (capsule reach) agar objek kecil di lantai dan gagang pintu tinggi memiliki sensitivitas jarak interaksi yang seimbang.",
+        "Membangun sistem angkat benda (ItemCarryController) yang mematikan gravitasi/collider saat digenggam dan menyalurkan impuls lempar dengan torque putar acak.",
+        "Membuat preview lintasan parabola dashed procedural secara dinamis melalui LineRenderer dengan animasi scrolling UV texture berkecepatan stabil."
+        ],
+        how_en: [
+        "Employed vertical cylindrical capsule sweeps ensuring consistent reach for ground items and high door handles.",
+        "Built ItemCarryController: suspends gravity/collision while carried and applies impulse throws with random rotational torque.",
+        "Generated dynamic procedural dashed parabolic trajectories via LineRenderer with speed-consistent UV scroll shaders."
         ]
-      }
-    ]
-  }
-];
-/* ============ SELESAI ============ */
+        }
+        ]
+        }
+        ];
+        /* ============ SELESAI KONFIGURASI ============ */
 
-const $ = id => document.getElementById(id), app = $("app");
-$("brand").textContent = SITE.name;
-$("cta").textContent = SITE.cta;
+        const $ = id => document.getElementById(id), app = $("app");
+        const RM = matchMedia("(prefers-reduced-motion:reduce)").matches;
+        const FINE = matchMedia("(hover:hover) and (pointer:fine)").matches;
+        const pad = n => String(n).padStart(2, "0");
+        const words = (s, from = 99) => s.split(" ").map((w, i) => `<span class="w${i >= from ? " ac" : ""}"><span style="--i:${i}">${w}</span></span>`).join(" ");
 
-/* RENDER TOMBOL CONTACT & FITUR COPY EMAIL */
-function copyEmail(email, btn){
-  navigator.clipboard.writeText(email).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = "✓ Email Disalin!";
-    btn.style.color = "var(--accent)";
-    btn.style.borderColor = "var(--accent)";
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.color = "";
-      btn.style.borderColor = "";
-    }, 2000);
-  }).catch(() => {
-    prompt("Salin alamat email:", email);
-  });
-}
-window.copyEmail = copyEmail;
+        /* FUNGSI TOGGLE BAHASA */
+        function setLang(lang){
+        currentLang = lang;
+        localStorage.setItem("site_lang", lang);
+        document.documentElement.lang = lang;
+        updateLangButtons();
+        updateStaticText();
+        render();
+        reveal();
+        }
+        window.setLang = setLang;
 
-$("contacts").innerHTML = SITE.contacts.map(c => {
-  if(c.isCopy){
-    return `<button class="btn alt" onclick="copyEmail('${c.email}', this)">${c.label}</button>`;
-  }
-  return `<a class="btn alt" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`;
-}).join("");
+        function updateLangButtons(){
+        $("btn-id").classList.toggle("active", currentLang === "id");
+        $("btn-en").classList.toggle("active", currentLang === "en");
+        }
 
-function ytId(v){const m = String(v).match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(v) ? v : "")}
+        function updateStaticText(){
+        const t = I18N[currentLang];
+        $("brand").textContent = SITE.name;
+        $("cname").textContent = SITE.name;
+        $("cta").textContent = t.cta;
 
-/* FUNGSI PLAYBACK MEMASTIKAN GIF TAJAM DAN TIDAK MELAR */
-function play(kind, val){
-  if(kind === "yt"){
-    $("screen").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${val}" title="Video gameplay" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-  } else if(/\.gif($|\?)/i.test(val)){
-    $("screen").innerHTML = `<img src="${val}" alt="Cuplikan gameplay animasi" class="gif-view" loading="lazy">`;
-  } else {
-    $("screen").innerHTML = `<video src="${val}" controls autoplay loop muted playsinline></video>`;
-  }
-}
+        /* Render tombol kontak */
+        const contactsHTML = SITE.contacts.map(c => {
+        if(c.isCopy) return `<button class="btn alt" onclick="copyEmail('${c.email}', this)">${c.label}</button>`;
+        return `<a class="btn alt" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`;
+        }).join("");
+        $("contacts").innerHTML = contactsHTML;
+        }
 
-function showEmpty(){
-  $("screen").innerHTML = `<div class="empty"><h3>Animasi gameplay belum terpasang</h3><p>Pastikan file GIF berada di tempat yang sama dengan <code>index.html</code>.</p>
-  <div class="row"><input type="text" id="url" placeholder="Contoh: reverie.gif" aria-label="Link video"><button class="btn" id="go">Putar</button></div>
-  <div class="row"><label class="btn alt" style="cursor:pointer">Pilih file GIF/Video lokal<input type="file" id="file" accept="video/*,image/gif" hidden></label></div></div>`;
-  $("go").onclick = () => {const v = $("url").value.trim(); if(!v) return; const id = ytId(v); id ? play("yt", id) : play("file", v)};
-  $("file").onchange = e => {const f = e.target.files[0]; if(f) play("file", URL.createObjectURL(f))};
-}
+        function copyEmail(email, btn){
+        const t = I18N[currentLang];
+        navigator.clipboard.writeText(email).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = t.copied;
+        btn.classList.add("ok");
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove("ok"); }, 2000);
+        }).catch(() => {
+        prompt(t.copyPrompt, email);
+        });
+        }
+        window.copyEmail = copyEmail;
 
-function slot(i, src){
-  return src ? `<img src="${src}" alt="Cuplikan layar ${i + 1}" loading="lazy">`
-             : `<label class="slot">Tambah foto ${i + 1}<input type="file" accept="image/*" hidden></label>`;
-}
+        function ytId(v){const m = String(v).match(/(?:youtu\.be\/|v=|embed\/)([\w-]{11})/); return m ? m[1] : (/^[\w-]{11}$/.test(v) ? v : "")}
 
-/* KARTU GAME UNTUK BERANDA */
-function card(g){
-  return `<a class="gcard" href="#/g/${g.id}"><div class="cover" style="--g1:${g.g[0]};--g2:${g.g[1]}">${g.photos[0] ? `<img src="${g.photos[0]}" alt="" loading="lazy">` : ""}</div>
-  <div class="gbody"><h2>${g.title}</h2><span>${g.genre}</span><p>${g.short}</p></div></a>`;
-}
+        function play(kind, val){
+        if(kind === "yt"){
+        $("screen").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${val}" title="Video gameplay" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        } else if(/\.gif($|\?)/i.test(val)){
+        $("screen").innerHTML = `<img src="${val}" alt="Cuplikan gameplay animasi" class="gif-view" loading="lazy">`;
+        } else {
+        $("screen").innerHTML = `<video src="${val}" controls autoplay loop muted playsinline></video>`;
+        }
+        }
 
-function home(){
-  document.title = SITE.name + " | Portofolio Game Developer";
-  const main = GAMES.filter(g => !g.experimental);
-  const exp = GAMES.filter(g => g.experimental);
-  app.innerHTML = `<div class="hero"><h1>${SITE.headline}</h1><p>${SITE.intro}</p></div>
-  <div class="cards">${main.map(card).join("")}</div>
-  ${exp.length ? `<section class="sec"><h2>Experimental</h2>
-    <p>Riset dan tech prototype mandiri yang belum menjadi game utuh, berfokus pada sistem gameplay dan AI.</p>
-    <div class="cards">${exp.map(card).join("")}</div></section>` : ""}`;
-}
+        function showEmpty(){
+        const t = I18N[currentLang];
+        $("screen").innerHTML = `<div class="empty"><h3>${t.emptyTitle}</h3><p>${t.emptyDesc}</p>
+        <div class="row"><input type="text" id="url" placeholder="${t.emptyInputPlaceholder}" aria-label="Link video"><button class="btn" id="go">${t.emptyPlayBtn}</button></div>
+        <div class="row"><label class="btn alt" style="cursor:pointer">${t.emptyLocalBtn}<input type="file" id="file" accept="video/*,image/gif" hidden></label></div></div>`;
+        $("go").onclick = () => {const v = $("url").value.trim(); if(!v) return; const id = ytId(v); id ? play("yt", id) : play("file", v)};
+        $("file").onchange = e => {const f = e.target.files[0]; if(f) play("file", URL.createObjectURL(f))};
+        }
 
-function game(g, idx){
-  document.title = g.title + " | " + SITE.name;
-  const n = Math.max(3, g.photos.length), nx = GAMES[(idx + 1) % GAMES.length];
-  app.innerHTML = `<a class="back" href="#/">← Semua game</a>
-  <div class="top"><h1>${g.title}</h1><p>${g.desc}</p>
-    <div class="chips"><span class="chip">${g.genre}</span><span class="chip">${g.status}</span>${g.tags.map(t => `<span class="chip">${t}</span>`).join("")}</div></div>
-  <div class="stage"><div class="screen" id="screen" style="--g1:${g.g[0]};--g2:${g.g[1]}"></div></div>
-  <section class="sec"><h2>Foto game</h2><div class="gal">${Array.from({length: n}, (_, i) => `<figure>${slot(i, g.photos[i])}</figure>`).join("")}</div></section>
-  <section class="sec"><h2>Peran saya</h2><div class="role"><b>${g.role}</b><ul>${g.duties.map(d => `<li>${d}</li>`).join("")}</ul></div></section>
-  <section class="sec"><h2>Kerjaan saya dan cara mengembangkannya</h2><p>${g.method}</p>
-    <div class="work">${g.work.map(w => `<article class="job"><span class="tag">${w.tag}</span><h3>${w.t}</h3><p>${w.what}</p><ol>${w.how.map(h => `<li>${h}</li>`).join("")}</ol></article>`).join("")}</div></section>
-  <div class="next"><a class="btn alt" href="#/">Semua game</a>${GAMES.length > 1 ? `<a class="btn" href="#/g/${nx.id}">Game berikutnya: ${nx.title} →</a>` : ""}</div>`;
+        function slot(i, src){
+        const t = I18N[currentLang];
+        return src ? `<img src="${src}" alt="Cuplikan layar ${i + 1}" loading="lazy">`
+        : `<label class="slot">Tambah foto ${i + 1}<input type="file" accept="image/*" hidden></label>`;
+        }
 
-  const id = g.youtube && ytId(g.youtube);
-  id ? play("yt", id) : g.src ? play("file", g.src) : showEmpty();
+        /* KARTU GAME BERANDA */
+        function card(g, n){
+        const i = GAMES.indexOf(g);
+        const genreText = (currentLang === "en" && g.genre_en) ? g.genre_en : g.genre;
+        const shortText = (currentLang === "en" && g.short_en) ? g.short_en : g.short;
+        return `<div class="rv" style="--d:${(n % 3) * 90}ms"><a class="gcard" href="#/g/${g.id}"><div class="cover" style="--g1:${g.g[0]};--g2:${g.g[1]}">${g.photos[0] ? `<img src="${g.photos[0]}" alt="" loading="lazy">` : ""}<i class="num">${pad(i + 1)}</i><i class="arr">↗</i></div>
+        <div class="gbody"><h2>${g.title}</h2><span>${genreText}</span><p>${shortText}</p></div></a></div>`;
+        }
 
-  app.querySelectorAll(".slot input").forEach(inp => inp.onchange = e => {
-    const f = e.target.files[0]; if(f) inp.closest("figure").innerHTML = `<img src="${URL.createObjectURL(f)}" alt="Cuplikan layar">`;
-  });
-}
+        function home(){
+        const t = I18N[currentLang];
+        document.title = SITE.name + t.titleSuffix;
+        const main = GAMES.filter(g => !g.experimental);
+        const exp = GAMES.filter(g => g.experimental);
+        const row = GAMES.map(g => `<span>${g.title}</span><b>✦</b>`).join("");
+        app.innerHTML = `<div class="hero"><div class="blob b1"></div><div class="blob b2"></div><h1>${words(t.headline, 3)}</h1><p class="lead">${t.intro}</p></div>
+        <div class="mq" aria-hidden="true"><div class="mqt">${row.repeat(4)}</div></div>
+        <div class="cards">${main.map(card).join("")}</div>
+        ${exp.length ? `<section class="sec rv"><h2>${t.expTitle}</h2>
+        <p>${t.expDesc}</p>
+        <div class="cards exp-cards">${exp.map(card).join("")}</div></section>` : ""}`;
+        }
 
-function route(){
-  const m = location.hash.match(/^#\/g\/([\w-]+)/), i = m ? GAMES.findIndex(x => x.id === m[1]) : -1;
-  i >= 0 ? game(GAMES[i], i) : home();
-  window.scrollTo(0, 0);
-}
-addEventListener("hashchange", route);
-route();
-</script>
+        function game(g, idx){
+        const t = I18N[currentLang];
+        document.title = g.title + " | " + SITE.name;
+        const n = Math.max(3, g.photos.length);
+        const prevIdx = (idx - 1 + GAMES.length) % GAMES.length;
+        const nxIdx = (idx + 1) % GAMES.length;
+        const prv = GAMES[prevIdx], nx = GAMES[nxIdx];
+        const prvTitle = prv.experimental ? t.expTitle : prv.title;
+        const nxTitle = nx.experimental ? t.expTitle : nx.title;
+
+        const descText = (currentLang === "en" && g.desc_en) ? g.desc_en : g.desc;
+        const genreText = (currentLang === "en" && g.genre_en) ? g.genre_en : g.genre;
+        const statusText = (currentLang === "en" && g.status_en) ? g.status_en : g.status;
+        const roleText = (currentLang === "en" && g.role_en) ? g.role_en : g.role;
+        const dutiesList = (currentLang === "en" && g.duties_en) ? g.duties_en : g.duties;
+        const methodText = (currentLang === "en" && g.method_en) ? g.method_en : g.method;
+
+        app.innerHTML = `<div class="top"><h1>${words(g.title)}</h1><p class="lead">${descText}</p>
+        <div class="chips rv" style="--d:300ms"><span class="chip">${genreText}</span><span class="chip">${statusText}</span>${g.tags.map(tag => `<span class="chip">${tag}</span>`).join("")}</div></div>
+        <div class="stage rv" style="--d:150ms"><div class="screen" id="screen" style="--g1:${g.g[0]};--g2:${g.g[1]}"></div></div>
+        <section class="sec"><h2 class="rv">${t.secPhotos}</h2><div class="gal">${Array.from({length: n}, (_, i) => `<figure class="rv${g.photos[i] ? " zm" : ""}" style="--d:${i * 110}ms"${g.photos[i] ? ` tabindex="0" role="button" aria-label="${t.zoomPhoto} ${i + 1}"` : ""}>${slot(i, g.photos[i])}</figure>`).join("")}</div></section>
+        <section class="sec"><h2 class="rv">${t.secRole}</h2><div class="role rv"><b>${roleText}</b><ul>${dutiesList.map((d, k) => `<li style="--k:${k}">${d}</li>`).join("")}</ul></div></section>
+        <section class="sec"><h2 class="rv">${t.secWork}</h2><p class="rv">${methodText}</p>
+        <div class="work">${g.work.map((w, k) => {
+        const workTitle = (currentLang === "en" && w.t_en) ? w.t_en : w.t;
+        const workTag = (currentLang === "en" && w.tag_en) ? w.tag_en : w.tag;
+        const workWhat = (currentLang === "en" && w.what_en) ? w.what_en : w.what;
+        const workHow = (currentLang === "en" && w.how_en) ? w.how_en : w.how;
+        return `<article class="job rv" style="--d:${k * 110}ms"><span class="tag">${workTag}</span><h3>${workTitle}</h3><p>${workWhat}</p><ol>${workHow.map((h, j) => `<li style="--k:${j}">${h}</li>`).join("")}</ol></article>`;
+        }).join("")}</div></section>
+        <div class="next rv">
+         ${GAMES.length > 1 ? `<a class="btn alt" href="#/g/${prv.id}">← ${prvTitle}</a>` : ""}
+         <a class="btn alt" href="#/">${t.btnAll}</a>
+         ${GAMES.length > 1 ? `<a class="btn" href="#/g/${nx.id}">${nxTitle} →</a>` : ""}
+         </div>`;
+
+        const id = g.youtube && ytId(g.youtube);
+        id ? play("yt", id) : g.src ? play("file", g.src) : showEmpty();
+
+        app.querySelectorAll(".slot input").forEach(inp => inp.onchange = e => {
+        const f = e.target.files[0]; if(!f) return;
+        const fig = inp.closest("figure");
+        fig.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="Cuplikan layar">`;
+        fig.classList.add("zm"); fig.tabIndex = 0; fig.setAttribute("role", "button"); fig.setAttribute("aria-label", t.zoomPhoto);
+        });
+        }
+
+        /* ============ EFEK & INTERAKSI ============ */
+        function fx(root){
+        if(RM || !FINE) return;
+        root.querySelectorAll(".gcard").forEach(c => {
+        c.onpointermove = e => {
+        const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        c.style.setProperty("--rx", ((.5 - y) * 7).toFixed(2) + "deg");
+        c.style.setProperty("--ry", ((x - .5) * 9).toFixed(2) + "deg");
+        c.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
+        c.style.setProperty("--my", (y * 100).toFixed(1) + "%");
+        };
+        c.onpointerleave = () => { c.style.setProperty("--rx", "0deg"); c.style.setProperty("--ry", "0deg"); };
+        });
+        }
+
+        function reveal(){
+        app.classList.add("go");
+        const els = document.querySelectorAll("#app .rv:not(.v), .foot .rv:not(.v)");
+        if(RM || !("IntersectionObserver" in window)){ els.forEach(e => e.classList.add("v")); return; }
+        const io = new IntersectionObserver(es => es.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add("v"); io.unobserve(e.target); }
+        }), {threshold: .12, rootMargin: "0px 0px -6% 0px"});
+        els.forEach(e => io.observe(e));
+        }
+
+        /* kursor cincin & parallax blob */
+        if(FINE && !RM){
+        document.body.classList.add("cur");
+        const ring = $("ring"), root = document.documentElement;
+        let x = -100, y = -100, rx = x, ry = y;
+        addEventListener("pointermove", e => {
+        x = e.clientX; y = e.clientY;
+        root.style.setProperty("--px", (x / innerWidth * 2 - 1).toFixed(3));
+        root.style.setProperty("--py", (y / innerHeight * 2 - 1).toFixed(3));
+        }, {passive: true});
+        (function loop(){ rx += (x - rx) * .2; ry += (y - ry) * .2; ring.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+        document.addEventListener("mouseover", e => {
+        const t = e.target;
+        ring.className = t.closest(".zm") ? "z" : t.closest("a,button,label,[tabindex],input") ? "h" : "";
+        });
+        }
+
+        /* progress bar & header */
+        const pg = $("prog"), hd = $("top");
+        let tk = 0;
+        addEventListener("scroll", () => {
+        if(tk) return;
+        tk = requestAnimationFrame(() => {
+        tk = 0;
+        const m = document.documentElement.scrollHeight - innerHeight;
+        pg.style.transform = `scaleX(${m > 0 ? Math.min(1, scrollY / m) : 0})`;
+        hd.classList.toggle("sc", scrollY > 24);
+        });
+        }, {passive: true});
+
+        /* ============ LIGHTBOX ZOOM ============ */
+        const lb = $("lb"), lbf = $("lbf"), lbi = $("lbi"), L = {list: [], i: 0, big: 0};
+        function lbW(){
+        const st = document.querySelector(".stage .screen"), sw = st ? st.getBoundingClientRect().width : 780;
+        const fit = Math.min(innerWidth * .94, innerHeight * .86 * 16 / 9);
+        return L.big ? Math.min(innerWidth * .98, innerHeight * .92 * 16 / 9) : Math.min(sw || 780, fit);
+        }
+        function lbSize(){ lbf.style.setProperty("--w", lbW() + "px"); lbf.classList.toggle("big", !!L.big); }
+        function lbShow(i, dir){
+        const n = L.list.length; L.i = (i + n) % n;
+        const im = L.list[L.i];
+        lbi.src = im.currentSrc || im.src; lbi.alt = im.alt;
+        $("lbc").textContent = `${L.i + 1} / ${n}`;
+        lb.classList.toggle("one", n < 2);
+        if(dir && !RM) lbi.animate([{opacity: 0, transform: `translateX(${dir * 40}px)`}, {opacity: 1, transform: "none"}], {duration: 350, easing: "ease-out"});
+        }
+        function flip(from, to, ms, rev){
+        const o = from.getBoundingClientRect(), f = to.getBoundingClientRect();
+        const a = {transform: `translate(${o.left + o.width / 2 - f.left - f.width / 2}px,${o.top + o.height / 2 - f.top - f.height / 2}px) scale(${o.width / f.width})`, borderRadius: "20px"};
+        const b = {transform: "none", borderRadius: "14px"};
+        return to.animate(rev ? [b, a] : [a, b], {duration: ms, easing: "cubic-bezier(.2,.8,.2,1)", fill: rev ? "forwards" : "none"});
+        }
+        function lbOpen(list, i){
+        L.list = list; L.big = 0;
+        lbf.getAnimations().forEach(a => a.cancel()); $("lbg").getAnimations().forEach(a => a.cancel());
+        lb.hidden = false; document.documentElement.style.overflow = "hidden";
+        lbSize(); lbShow(i, 0);
+        if(!RM){ flip(list[i], lbf, 540, false); $("lbg").animate([{opacity: 0}, {opacity: 1}], {duration: 400}); }
+        $("lbx").focus({preventScroll: true});
+        }
+        function lbClose(){
+        const t = L.list[L.i];
+        const done = () => { lb.hidden = true; document.documentElement.style.overflow = ""; const f = t && t.closest("figure"); f && f.focus({preventScroll: true}); };
+        if(RM || !t || !t.isConnected){ done(); return; }
+        t.scrollIntoView({block: "nearest"});
+        flip(t, lbf, 440, true).onfinish = done;
+        $("lbg").animate([{opacity: 1}, {opacity: 0}], {duration: 420, fill: "forwards"});
+        }
+        function lbToggle(){ L.big ^= 1; lbSize(); }
+
+        app.addEventListener("click", e => {
+        const f = e.target.closest(".gal figure"), im = f && f.querySelector("img");
+        if(!im) return;
+        const list = [...app.querySelectorAll(".gal img")];
+        lbOpen(list, list.indexOf(im));
+        });
+        app.addEventListener("keydown", e => {
+        if((e.key === "Enter" || e.key === " ") && e.target.matches(".gal figure[tabindex]")){ e.preventDefault(); e.target.click(); }
+        });
+        $("lbx").onclick = lbClose; $("lbz").onclick = lbToggle; lbi.onclick = lbToggle;
+        $("lbp").onclick = () => lbShow(L.i - 1, -1); $("lbn").onclick = () => lbShow(L.i + 1, 1);
+        $("lbg").onclick = lbClose;
+        lb.addEventListener("click", e => { if(e.target === lb) lbClose(); });
+        document.addEventListener("keydown", e => {
+        if(lb.hidden) return;
+        if(e.key === "Escape") lbClose();
+        else if(e.key === "ArrowLeft") lbShow(L.i - 1, -1);
+        else if(e.key === "ArrowRight") lbShow(L.i + 1, 1);
+        });
+        let sx = 0;
+        lbf.addEventListener("touchstart", e => { sx = e.touches[0].clientX; }, {passive: true});
+        lbf.addEventListener("touchend", e => {
+        const d = e.changedTouches[0].clientX - sx;
+        if(Math.abs(d) > 50 && L.list.length > 1) lbShow(L.i + (d < 0 ? 1 : -1), d < 0 ? 1 : -1);
+        });
+        addEventListener("resize", () => { if(!lb.hidden) lbSize(); });
+
+        /* ============ ROUTING + TRANSISI HALAMAN ============ */
+        const cv = $("curtain");
+        let T;
+        function render(){
+        app.classList.remove("go");
+        const m = location.hash.match(/^#\/g\/([\w-]+)/), i = m ? GAMES.findIndex(x => x.id === m[1]) : -1;
+        i >= 0 ? game(GAMES[i], i) : home();
+        window.scrollTo(0, 0);
+        fx(app);
+        }
+        function wipe(){
+        if(RM){ reveal(); return; }
+        cv.style.transition = "clip-path .6s cubic-bezier(.7,0,.2,1)";
+        cv.style.clipPath = "inset(0 0 100% 0)";
+        setTimeout(reveal, 280);
+        setTimeout(() => { cv.style.transition = "none"; cv.style.clipPath = "inset(100% 0 0 0)"; }, 650);
+        }
+        function nav(){
+        clearTimeout(T);
+        if(RM){ render(); reveal(); return; }
+        cv.style.transition = "clip-path .5s cubic-bezier(.7,0,.2,1)";
+        cv.style.clipPath = "inset(0)";
+        T = setTimeout(() => { render(); wipe(); }, 540);
+        }
+        addEventListener("hashchange", nav);
+
+        /* Inisialisasi awal */
+        updateLangButtons();
+        updateStaticText();
+        render();
+        setTimeout(wipe, RM ? 0 : 850);
+    </script>
 </body>
 </html>
