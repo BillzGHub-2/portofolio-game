@@ -930,6 +930,97 @@
                     margin-top: 2px
                 }
 
+        /* 3D animation showcase */
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px
+        }
+
+        .animation-card {
+            min-width: 0;
+            padding: 16px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            transition: transform .35s var(--ease),border-color .3s,box-shadow .4s,opacity .9s
+        }
+
+        .animation-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 26px 44px -30px rgba(10,127,176,.6)
+        }
+
+        .animation-card h3 {
+            margin-bottom: 12px;
+            font-size: 20px
+        }
+
+        .animation-media {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--screen)
+        }
+
+        .animation-media video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--screen)
+        }
+
+        .animation-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px
+        }
+
+        .animation-variant {
+            min-width: 0
+        }
+
+        .animation-label {
+            min-height: 34px;
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.35
+        }
+
+        @media (max-width: 960px) {
+            .animation-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .animation-card:last-child {
+                grid-column: 1 / -1
+            }
+        }
+
+        @media (max-width: 600px) {
+            .animation-grid {
+                grid-template-columns: 1fr
+            }
+
+            .animation-card:last-child {
+                grid-column: auto
+            }
+
+            .animation-pair {
+                gap: 8px
+            }
+
+            .animation-label {
+                font-size: 11px
+            }
+        }
+
         /* Navigasi Porto: Selalu Seimbang dan Center */
         .next {
             margin-top: 56px;
@@ -1190,6 +1281,12 @@
         secPhotos: "Foto game",
         secRole: "Peran saya",
         secWork: "Kerjaan saya dan cara mengembangkannya",
+        sec3dAnimation: "3D Animation",
+        animFacial: "Ekspresi Wajah",
+        animSimplePose: "Simple Pose",
+        animFullBody: "Full Body Pose",
+        animCameraMove: "Dengan Pergerakan Kamera",
+        animStaticCamera: "Kamera Statis",
         btnAll: "Semua Game",
         zoomPhoto: "Perbesar foto",
         emptyTitle: "Animasi gameplay belum terpasang",
@@ -1210,6 +1307,12 @@
         secPhotos: "Game Screenshots",
         secRole: "My Role",
         secWork: "Technical Breakdown & Implementation",
+        sec3dAnimation: "3D Animation",
+        animFacial: "Facial Expressions",
+        animSimplePose: "Simple Pose",
+        animFullBody: "Full Body Pose",
+        animCameraMove: "With Camera Movement",
+        animStaticCamera: "Static Camera",
         btnAll: "All Games",
         zoomPhoto: "Zoom screenshot",
         emptyTitle: "Gameplay preview not attached",
@@ -1895,6 +1998,33 @@
         <div class="gbody"><h2>${g.title}</h2><span>${genreText}</span><p>${shortText}</p></div></a></div>`;
         }
 
+        function animationSection(){
+        const t = I18N[currentLang];
+        const video = (src, label) => `<div class="animation-media"><video controls preload="metadata" playsinline aria-label="${label}"><source src="${src}" type="video/mp4">Browser Anda tidak mendukung pemutaran video.</video></div>`;
+        return `<section class="sec">
+        <h2 class="rv">${t.sec3dAnimation}</h2>
+        <div class="animation-grid">
+        <article class="animation-card rv">
+        <h3>${t.animFacial}</h3>
+        ${video("video/3d-animation/facial-expressions.mp4", t.animFacial)}
+        </article>
+        <article class="animation-card rv">
+        <h3>${t.animSimplePose}</h3>
+        ${video("video/3d-animation/simple-pose.mp4", t.animSimplePose)}
+        </article>
+        <article class="animation-card rv">
+        <h3>${t.animFullBody}</h3>
+        <div class="animation-pair">
+        <div class="animation-variant"><div class="animation-label">${t.animCameraMove}</div>
+        ${video("video/3d-animation/full-body-pose-camera-movement.mp4", t.animFullBody + " - " + t.animCameraMove)}</div>
+        <div class="animation-variant"><div class="animation-label">${t.animStaticCamera}</div>
+        ${video("video/3d-animation/full-body-pose-static-camera.mp4", t.animFullBody + " - " + t.animStaticCamera)}</div>
+        </div>
+        </article>
+        </div>
+        </section>`;
+        }
+
         function home(){
         const t = I18N[currentLang];
         document.title = SITE.name + t.titleSuffix;
@@ -1906,7 +2036,8 @@
         <div class="cards">${main.map(card).join("")}</div>
         ${exp.length ? `<section class="sec rv"><h2>${t.expTitle}</h2>
         <p>${t.expDesc}</p>
-        <div class="cards exp-cards">${exp.map(card).join("")}</div></section>` : ""}`;
+        <div class="cards exp-cards">${exp.map(card).join("")}</div></section>` : ""}
+        ${animationSection()}`;
         }
 
         function game(g, idx){
